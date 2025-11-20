@@ -25,15 +25,13 @@
       </div>
 
       <!-- Contenido -->
-      <div class="faena-content" v-if="faenas[activeFaena]">
+      <div class="faena-content" v-if="currentFaena">
         <div class="faena-header">
-          <div class="status-badge" :class="faenas[activeFaena].status">
+          <div class="status-badge" :class="currentFaena.status">
             <div class="status-dot"></div>
-            <span>{{
-              faenas[activeFaena].status === 'active' ? 'En Ejecución' : 'Finalizada'
-            }}</span>
+            <span>{{ currentFaena.status === 'active' ? 'En Ejecución' : 'Finalizada' }}</span>
           </div>
-          <h3 class="faena-title">{{ faenas[activeFaena].title }}</h3>
+          <h3 class="faena-title">{{ currentFaena.title }}</h3>
           <div class="location">
             <svg viewBox="0 0 24 24" fill="none">
               <path
@@ -43,7 +41,7 @@
               />
               <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" />
             </svg>
-            {{ faenas[activeFaena].location }}
+            {{ currentFaena.location }}
           </div>
         </div>
 
@@ -56,18 +54,18 @@
               </svg>
               <div>
                 <span class="label">Servicio</span>
-                <span class="value">{{ faenas[activeFaena].servicio }}</span>
+                <span class="value">{{ currentFaena.servicio }}</span>
               </div>
             </div>
 
-            <div class="info-item" v-if="faenas[activeFaena].cliente">
+            <div class="info-item" v-if="currentFaena.cliente">
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" />
                 <circle cx="9" cy="7" r="4" stroke="currentColor" />
               </svg>
               <div>
                 <span class="label">Cliente</span>
-                <span class="value">{{ faenas[activeFaena].cliente }}</span>
+                <span class="value">{{ currentFaena.cliente }}</span>
               </div>
             </div>
 
@@ -80,42 +78,42 @@
               </svg>
               <div>
                 <span class="label">Duración</span>
-                <span class="value">{{ faenas[activeFaena].duracion }}</span>
+                <span class="value">{{ currentFaena.duracion }}</span>
               </div>
             </div>
 
-            <div class="info-item" v-if="faenas[activeFaena].turno">
+            <div class="info-item" v-if="currentFaena.turno">
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" />
                 <circle cx="12" cy="7" r="4" stroke="currentColor" />
               </svg>
               <div>
                 <span class="label">Turno</span>
-                <span class="value">{{ faenas[activeFaena].turno }}</span>
+                <span class="value">{{ currentFaena.turno }}</span>
               </div>
             </div>
 
-            <div class="info-item" v-if="faenas[activeFaena].periodicidad">
+            <div class="info-item" v-if="currentFaena.periodicidad">
               <svg viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="12" r="10" stroke="currentColor" />
                 <polyline points="12 6 12 12 16 14" stroke="currentColor" />
               </svg>
               <div>
                 <span class="label">Periodicidad</span>
-                <span class="value">{{ faenas[activeFaena].periodicidad }}</span>
+                <span class="value">{{ currentFaena.periodicidad }}</span>
               </div>
             </div>
           </div>
 
           <div class="description">
             <h4>Descripción General</h4>
-            <p>{{ faenas[activeFaena].descripcion }}</p>
+            <p>{{ currentFaena.descripcion }}</p>
           </div>
 
-          <div v-if="faenas[activeFaena].alcance?.length" class="alcance">
+          <div v-if="currentFaena.alcance?.length" class="alcance">
             <h4>Alcance del Servicio</h4>
             <ul>
-              <li v-for="(item, idx) in faenas[activeFaena].alcance" :key="idx">
+              <li v-for="(item, idx) in currentFaena.alcance" :key="idx">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" />
                 </svg>
@@ -124,10 +122,10 @@
             </ul>
           </div>
 
-          <div v-if="faenas[activeFaena].servicios?.length" class="servicios">
+          <div v-if="currentFaena.servicios?.length" class="servicios">
             <h4>Servicios Realizados</h4>
             <ul>
-              <li v-for="(item, idx) in faenas[activeFaena].servicios" :key="idx">
+              <li v-for="(item, idx) in currentFaena.servicios" :key="idx">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" />
                 </svg>
@@ -142,7 +140,7 @@
           <h4>Galería de Imágenes</h4>
           <div class="gallery-grid">
             <div
-              v-for="(foto, idx) in faenas[activeFaena].fotos"
+              v-for="(foto, idx) in currentFaena.fotos"
               :key="idx"
               class="gallery-item"
               @click="openModal(idx)"
@@ -165,7 +163,7 @@
 
       <!-- Modal -->
       <Transition name="modal">
-        <div v-if="modalOpen && faenas[activeFaena]" class="modal" @click="closeModal">
+        <div v-if="modalOpen && currentFaena" class="modal" @click="closeModal">
           <button class="modal-close" @click="closeModal">
             <svg viewBox="0 0 24 24" fill="none">
               <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" />
@@ -181,7 +179,7 @@
             </button>
 
             <img
-              :src="faenas[activeFaena].fotos[currentImageIndex]"
+              :src="currentFaena.fotos[currentImageIndex]"
               :alt="`Imagen ${currentImageIndex + 1}`"
             />
 
@@ -192,7 +190,7 @@
             </button>
 
             <div class="modal-counter">
-              {{ currentImageIndex + 1 }} / {{ faenas[activeFaena].fotos.length }}
+              {{ currentImageIndex + 1 }} / {{ currentFaena.fotos.length }}
             </div>
           </div>
         </div>
@@ -202,7 +200,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 interface Faena {
   title: string
@@ -402,6 +400,9 @@ const faenas: Faena[] = [
   },
 ]
 
+// Computed property para la faena actual
+const currentFaena = computed(() => faenas[activeFaena.value])
+
 const selectFaena = (index: number) => {
   activeFaena.value = index
   const content = document.querySelector('.faena-content')
@@ -422,16 +423,16 @@ const closeModal = () => {
 }
 
 const nextImage = () => {
-  if (faenas[activeFaena.value]) {
-    currentImageIndex.value = (currentImageIndex.value + 1) % faenas[activeFaena.value].fotos.length
+  if (currentFaena.value) {
+    currentImageIndex.value = (currentImageIndex.value + 1) % currentFaena.value.fotos.length
   }
 }
 
 const prevImage = () => {
-  if (faenas[activeFaena.value]) {
+  if (currentFaena.value) {
     currentImageIndex.value =
-      (currentImageIndex.value - 1 + faenas[activeFaena.value].fotos.length) %
-      faenas[activeFaena.value].fotos.length
+      (currentImageIndex.value - 1 + currentFaena.value.fotos.length) %
+      currentFaena.value.fotos.length
   }
 }
 </script>
