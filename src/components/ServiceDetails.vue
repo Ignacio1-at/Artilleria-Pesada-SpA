@@ -20,7 +20,7 @@
           :class="['tab-button', { active: activeFaena === index }]"
           @click="selectFaena(index)"
         >
-          {{ faena.title }}
+          {{ faena.tabName || faena.title }}
         </button>
       </div>
 
@@ -110,10 +110,58 @@
             <p>{{ currentFaena.descripcion }}</p>
           </div>
 
+          <div v-if="currentFaena.indicadores?.length" class="indicadores">
+            <h4>Indicadores Operacionales</h4>
+            <ul>
+              <li v-for="(item, idx) in currentFaena.indicadores" :key="idx">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" />
+                </svg>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="currentFaena.dotacion?.length" class="dotacion">
+            <h4>Dotación</h4>
+            <ul>
+              <li v-for="(item, idx) in currentFaena.dotacion" :key="idx">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" />
+                </svg>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="currentFaena.equipamiento?.length" class="equipamiento">
+            <h4>Equipamiento</h4>
+            <ul>
+              <li v-for="(item, idx) in currentFaena.equipamiento" :key="idx">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" />
+                </svg>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
           <div v-if="currentFaena.alcance?.length" class="alcance">
             <h4>Alcance del Servicio</h4>
             <ul>
               <li v-for="(item, idx) in currentFaena.alcance" :key="idx">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" />
+                </svg>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="currentFaena.fortalezas?.length" class="fortalezas">
+            <h4>Fortalezas</h4>
+            <ul>
+              <li v-for="(item, idx) in currentFaena.fortalezas" :key="idx">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" />
                 </svg>
@@ -204,6 +252,7 @@ import { ref, computed } from 'vue'
 
 interface Faena {
   title: string
+  tabName?: string
   location: string
   servicio: string
   duracion: string
@@ -214,6 +263,10 @@ interface Faena {
   cliente?: string
   periodicidad?: string
   servicios?: string[]
+  indicadores?: string[]
+  dotacion?: string[]
+  equipamiento?: string[]
+  fortalezas?: string[]
   fotos: string[]
 }
 
@@ -223,21 +276,41 @@ const currentImageIndex = ref(0)
 
 const faenas: Faena[] = [
   {
-    title: 'CUCONS VEN',
+    title:
+      'Servicio de Transferencia / porteo de contenedores y/o tolvas con concentrado de cobre en Ventanas',
+    tabName: 'Cucons VEN',
     location: 'Ventanas, Puchuncaví',
-    servicio: 'Operación y Mantenimiento Tornamesa',
-    duracion: '12 meses (renovable)',
-    turno: '4x3',
+    servicio:
+      'Recepción, porteo interno, descarga y despacho de contenedores con concentrado de cobre',
+    duracion: 'Enero 2023 – Diciembre 2026',
+    turno: '6x1',
     status: 'active',
-    cliente: 'Anglo American',
+    cliente: 'Ferrocarriles del Pacífico S.A. / Mandante: Codelco División Teniente',
     descripcion:
-      'Operación integral y mantención especializada de tornamesas en Faena Los Bronces. Nuestro equipo técnico garantiza la disponibilidad operativa y el funcionamiento óptimo de sistemas críticos de transporte ferroviario.',
+      'En el patio de transferencia Cucons, operamos el proceso completo de movimiento de contenedores con concentrado de cobre, coordinando ingreso de camiones, corte de sellos, descarga en galpón, porteo y despacho final. La operación exige estándares estrictos por exposición a sílice y control ambiental.',
+    indicadores: [
+      '2023: 6.199 toneladas porteadas — 7.559 contenedores movidos',
+      '2024: 1.446 toneladas — 7.814 contenedores movidos',
+      '2025: 4.380 toneladas — 3.907 contenedores a la fecha',
+      '100% cumplimiento sin reclamos del cliente',
+      '0 accidentabilidad',
+      'Tiempo promedio de ciclo: 5 minutos por contenedor',
+      '~6.500 HH anuales',
+    ],
+    dotacion: ['1 Supervisor', '2 Operadores Reach Stacker', '2 Conductores'],
+    equipamiento: ['Reach Stacker Hyster RS45-31CH', '3 camiones propios (para porteo interno)'],
     alcance: [
-      'Operación continua de tornamesas bajo sistemas de gestión SAI',
-      'Mantenimiento preventivo y correctivo programado',
-      'Inspecciones técnicas y reportes de estado',
-      'Gestión de repuestos y control de inventario',
-      'Cumplimiento estricto de estándares de seguridad Anglo American',
+      'Recepción de contenedores',
+      'Trazabilidad y control de sellos',
+      'Descarga con protección respiratoria obligatoria por sílice',
+      'Transporte interno en zona autorizada',
+      'Estacionamiento, destare y retorno',
+      'Aplicación rigurosa de PT-SST-03',
+    ],
+    fortalezas: [
+      'Operación certificada y auditada permanentemente por cliente y ACHS',
+      'Protocolos reforzados contra exposición a sílice',
+      'Cero desviaciones en estándares ambientales y operacionales',
     ],
     fotos: [
       '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.23.18 (1).jpeg',
@@ -249,21 +322,37 @@ const faenas: Faena[] = [
     ],
   },
   {
-    title: 'Tornamesa SAI',
+    title: 'Faena Tornamesa – Barrancas, San Antonio',
+    tabName: 'Tornamesa SAI',
     location: 'Barrancas, San Antonio',
-    servicio: 'Transferencia y Porteo de Contenedores',
-    duracion: '6 meses',
-    turno: '4x3',
+    servicio: 'Transferencia, porteo y stacking de contenedores',
+    duracion: 'Enero 2024 – Diciembre 2028',
+    turno: '6x1',
     status: 'active',
-    cliente: 'FEPASA',
+    cliente: '—',
     descripcion:
-      'Operación del patio de transferencia ferroviaria en Tornamesa, realizando carguío, descarga, porteo y apilamiento de contenedores que abastecen el puerto de San Antonio.',
+      'En esta faena operamos el patio de transferencia ferroviaria ubicado en el sector Tornamesa de FEPASA, desempeñando el carguío, descarga, porteo interno y apilamiento de contenedores provenientes de trenes de carga que abastecen el puerto de San Antonio. La operación exige continuidad total y altos niveles de coordinación con las maniobras del ferrocarril. Movilizamos contenedores de carga general —desde celulosa hasta carga refrigerada o seca— garantizando trazabilidad, orden y continuidad operacional en todo momento.',
+    indicadores: [
+      '18.000 contenedores movilizados por año',
+      '7.000 toneladas mensuales promedio',
+      '17.100 HH sin accidentes (con y sin tiempo perdido)',
+      '100% de cumplimiento operacional',
+      'Cero quiebres de servicio desde el inicio de la faena',
+    ],
+    dotacion: ['1 Supervisor', '2 Operadores Reach Stacker', '2 Auxiliares de Patio'],
+    equipamiento: ['Reach Stacker Hyster RS45-31CH (45 toneladas)'],
     alcance: [
-      'Operación continua 24/7 de patio ferroviario',
-      'Transferencia de contenedores desde trenes',
-      'Porteo interno y stacking optimizado',
-      'Coordinación con maniobras ferroviarias',
-      'Control de calidad y trazabilidad',
+      'Descarga de contenedores desde tren',
+      'Porteo interno hacia patio operacional',
+      'Apilamiento escalonado hasta 4 alturas según condición del terreno',
+      'Control de trazabilidad digital de ingreso, stacking y despacho',
+      'Coordinación con FEPASA y Puerto San Antonio',
+      'Cumplimiento estricto de procedimientos internos AP (PT-SST-06)',
+    ],
+    fortalezas: [
+      'Continuidad operacional impecable incluso ante fallas mecánicas o aumentos de demanda',
+      'Sistema de vigilancia 24/7 (Tepille)',
+      'Reacción inmediata ante emergencias, clima adverso o alta congestión operativa',
     ],
     fotos: [
       '/TORNAMESA SAI/WhatsApp Image 2025-03-05 at 16.13.42.jpeg',
@@ -275,21 +364,34 @@ const faenas: Faena[] = [
     ],
   },
   {
-    title: 'EFE Norte SAI',
+    title: 'Faena EFE Norte – San Antonio',
+    tabName: 'EFE Norte SAI',
     location: 'San Antonio',
-    servicio: 'Mantenimiento Infraestructura SAI',
-    duracion: '8 meses',
-    turno: '5x2',
+    servicio: 'Recepción, descarga, almacenamiento y despacho de ánodos de cobre',
+    duracion: 'Activa',
+    turno: '6x1',
     status: 'active',
-    cliente: 'Empresa de Ferrocarriles del Estado (EFE)',
     descripcion:
-      'Recepción, descarga, almacenamiento y despacho de ánodos de cobre. Operación especializada que requiere precisión absoluta debido al peso y características de la carga.',
+      'Faena especializada en la transferencia de ánodos de cobre desde trenes y su despacho posterior a camiones. Esta operación requiere precisión absoluta debido al peso y características de la carga, así como coordinación continua entre operadores, auxiliares de patio y supervisor. Contamos con procedimientos desarrollados exclusivamente para esta faena, con énfasis en el tránsito, delimitación estricta del área de maniobra y control de riesgo de atrapamiento o aplastamiento.',
     alcance: [
-      'Transferencia de ánodos desde trenes a almacenamiento',
-      'Despacho posterior a camiones',
-      'Coordinación entre operadores y auxiliares',
-      'Procedimientos especializados para carga pesada',
-      'Control de seguridad y trazabilidad',
+      'Descarga de paquetes de ánodos desde carros ferroviarios',
+      'Nivelación y ajuste de paquetes mediante tocones',
+      'Traslado interno seguro con grúas horquilla',
+      'Preparación y carga de camiones',
+      'Control documental y trazabilidad',
+      'Delimitación estricta de área crítica (uso obligatorio de conos y señalización)',
+    ],
+    dotacion: ['1 Supervisor', '2 Operadores de Grúa Horquilla', '2 Auxiliares de Patio'],
+    equipamiento: ['Grúas horquillas de alto tonelaje (según procedimiento FR-PPA-12)'],
+    indicadores: [
+      '0 accidentabilidad',
+      'Cumplimiento estricto de distancias de seguridad (8 metros hombre–máquina)',
+      'Operación validada bajo PT-SST-07, versión 03 (2025)',
+    ],
+    fortalezas: [
+      'Alta especialización en manipulación de materiales pesados',
+      'Control exhaustivo de accesos y tránsito en área de maniobra',
+      'Procedimientos validados por inspecciones del cliente y ACHS',
     ],
     fotos: [
       '/EFE NORTE SAI/WhatsApp Image 2025-03-19 at 16.43.55.jpeg',
@@ -301,20 +403,22 @@ const faenas: Faena[] = [
     ],
   },
   {
-    title: 'Puerto Panul SAI',
-    location: 'Puerto Panul, Región de Coquimbo',
-    servicio: 'Implementación Sistema SAI',
-    duracion: '3 meses',
+    title: 'Faena Puerto Panul – San Antonio',
+    tabName: 'Puerto Panul SAI',
+    location: 'Puerto Panul, San Antonio',
+    servicio: 'Movimiento y porteo interno de carros de granel (granos)',
+    duracion: 'Octubre 2023 – Enero 2025',
     status: 'completed',
-    cliente: 'Puerto Panul',
     descripcion:
-      'Proyecto de implementación de sistema SAI completo para operación portuaria, incluyendo instalación, configuración y puesta en marcha.',
+      'Esta faena implica el movimiento de carros ferroviarios con un minicargador para operaciones de transferencia de granel sólido en Puerto Panul. El trabajo es intermitente pero crítico, ya que debe ejecutarse con rapidez y seguridad para no interrumpir el proceso portuario.',
     alcance: [
-      'Diseño e instalación de sistema de automatización',
-      'Integración con infraestructura existente',
-      'Capacitación a personal operativo',
-      'Pruebas de funcionamiento y certificación',
-      'Entrega de documentación técnica',
+      'Movimiento y posicionamiento de carros',
+      'Apoyo a operaciones de descarga de granel',
+      'Aseo y ordenamiento operacional',
+    ],
+    fortalezas: [
+      'Respuesta rápida ante ventanas operativas del puerto',
+      'Personal altamente experimentado para maniobras en zonas portuarias',
     ],
     fotos: [
       '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.06.28.jpeg',
@@ -326,26 +430,30 @@ const faenas: Faena[] = [
     ],
   },
   {
-    title: 'Limpieza Patio Las Blancas',
+    title: 'Faena Las Blancas – Llay Llay',
+    tabName: 'Limpieza Patio Las Blancas',
     location: 'Llay Llay',
-    servicio: 'Servicios de Limpieza Industrial',
-    duracion: 'Servicio continuo',
-    periodicidad: 'Diaria',
+    servicio: 'Limpieza profunda y mantención del patio de transferencia de concentrado',
+    duracion: 'Servicios Spot',
+    periodicidad: 'Servicios programados según requerimiento del cliente "Servicios Spot"',
     status: 'active',
-    cliente: 'Anglo American',
     descripcion:
-      'Limpieza integral del patio donde se acopia y transfiere concentrado de cobre, incluyendo remoción de material adherido, despeje de áreas operativas y mantención de señalética.',
-    servicios: [
-      'Limpieza de vías férreas y áreas de operación',
-      'Retiro de material particulado y residuos industriales',
-      'Mantención de áreas de tránsito y seguridad',
-      'Gestión de residuos según normativa ambiental',
-      'Demarcaciones y mantenimiento de señalética',
+      'Realizamos limpieza integral del patio donde se acopia y transfiere concentrado de cobre, incluyendo remoción de material adherido, despeje de áreas operativas, demarcaciones, mantenimiento de señalética y disposición final autorizada.',
+    alcance: [
+      'Limpieza mecánica y manual',
+      'Retiro de concentrado',
+      'Pintura y ordenamiento de señaléticas',
+      'Control de polvo y residuos',
+      'Disposición final ambientalmente responsable',
+    ],
+    fortalezas: [
+      'Conocimiento profundo de estándares ambientales del rubro',
+      'Operación rápida para habilitación de zonas críticas',
     ],
     fotos: [
-      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.38.03.jpeg',
-      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.38.05 (1).jpeg',
-      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.38.08 (1).jpeg',
+      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.39.49.jpeg',
+      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.39.43.jpeg',
+      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.38.09 (1).jpeg',
       '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.39.42.jpeg',
       '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.40.28.jpeg',
       '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.40.35 (1).jpeg',
@@ -367,12 +475,36 @@ const faenas: Faena[] = [
       'Servicios de emergencia 24/7',
     ],
     fotos: [
+      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 12.40.09.jpeg',
+      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-07-01 at 17.57.19.jpeg',
       '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 12.40.09 (1).jpeg',
       '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 12.41.15 (1).jpeg',
       '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 13.33.45.jpeg',
       '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-07-01 at 17.34.37.jpeg',
+    ],
+  },
+  {
+    title: 'Servicios Especiales de AP',
+    tabName: 'Servicios Especiales de AP',
+    location: 'Transversal a todas las faenas',
+    servicio: 'Servicios especializados complementarios',
+    duracion: '2024 – 2025',
+    status: 'active',
+    descripcion:
+      'Servicios especiales que aplican transversalmente a todas las faenas y clientes, brindando soporte logístico y operativo según necesidades puntuales.',
+    servicios: [
+      'Desarme, traslado y armado de maquinaria Reach Stacker entre distintas ciudades (Rancagua – San Antonio, Santiago – Ventanas, entre otras)',
+      'Traslados de minicargadores, grúas horquillas y equipos portuarios',
+      'Asistencia operativa en faenas portuarias y ferroviarias',
+      'Servicios de emergencia 24/7 ante interrupciones operativas',
+    ],
+    fotos: [
+      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.17 (2).jpeg',
       '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.07.45.jpeg',
+      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.07.57.jpeg',
+      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.16 (1).jpeg',
       '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.16 (2).jpeg',
+      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.16.jpeg',
     ],
   },
   {
@@ -642,13 +774,21 @@ const prevImage = () => {
 
 /* Sections */
 .description,
+.indicadores,
+.dotacion,
+.equipamiento,
 .alcance,
+.fortalezas,
 .servicios {
   margin-bottom: 40px;
 }
 
 .description h4,
+.indicadores h4,
+.dotacion h4,
+.equipamiento h4,
 .alcance h4,
+.fortalezas h4,
 .servicios h4 {
   font-size: 1.4rem;
   font-weight: 700;
@@ -665,7 +805,11 @@ const prevImage = () => {
   color: var(--color-text);
 }
 
+.indicadores ul,
+.dotacion ul,
+.equipamiento ul,
 .alcance ul,
+.fortalezas ul,
 .servicios ul {
   list-style: none;
   display: flex;
@@ -673,7 +817,11 @@ const prevImage = () => {
   gap: 14px;
 }
 
+.indicadores li,
+.dotacion li,
+.equipamiento li,
 .alcance li,
+.fortalezas li,
 .servicios li {
   display: flex;
   align-items: flex-start;
@@ -683,7 +831,11 @@ const prevImage = () => {
   color: var(--color-text);
 }
 
+.indicadores li svg,
+.dotacion li svg,
+.equipamiento li svg,
 .alcance li svg,
+.fortalezas li svg,
 .servicios li svg {
   width: 20px;
   height: 20px;

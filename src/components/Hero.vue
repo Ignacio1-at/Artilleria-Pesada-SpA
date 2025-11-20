@@ -65,8 +65,8 @@ const images = [
           <div class="title-lema">
             <span class="lema-line"></span>
             <span class="lema-text"
-              >En AP trabajamos cada día para mover lo que el mundo necesita, con seguridad,
-              precisión y excelencia.</span
+              >"Trabajamos cada día para mover lo que el mundo necesita, con seguridad, precisión y
+              excelencia."</span
             >
             <span class="lema-line"></span>
           </div>
@@ -364,6 +364,7 @@ const images = [
   max-width: 600px;
   line-height: 1.55;
   flex: 1;
+  font-style: italic;
 }
 
 .hero-description {

@@ -63,24 +63,28 @@ const values = [
         <!-- Story Column -->
         <div class="story-column">
           <div class="story-card">
-            <h3>Historia</h3>
             <div class="story-content">
               <p>
-                <strong>Artillería Pesada Reparación Industrial SpA</strong> nace en Chile con una
-                visión clara: ser un referente en la operación y mantenimiento de maquinaria pesada,
-                aportando soluciones confiables y eficientes a la industria, la minería y la
-                logística portuaria.
+                En <strong>Artillería Pesada Reparación Industrial SpA</strong> somos especialistas
+                en operaciones logísticas, carguío y manejo de maquinaria pesada para la industria
+                minera, portuaria e industrial. Nuestro trabajo se basa en tres pilares esenciales:
+                seguridad, precisión y continuidad operacional.
               </p>
               <p>
-                Fundada por <strong>Ángelo Cisternas Muñoz</strong>, profesional con amplia
-                experiencia en operaciones marítimas e industriales, la compañía surge de la
-                convicción de que la excelencia operativa y la seguridad son el motor que impulsa el
-                desarrollo sostenible de las grandes faenas del país.
+                Contamos con una flota moderna de equipos de alto rendimiento y un equipo humano
+                altamente capacitado, preparado para ejecutar operaciones críticas de forma
+                eficiente y segura. Cada servicio que entregamos incorpora estándares rigurosos de
+                control, supervisión en terreno y trazabilidad operativa, asegurando resultados
+                confiables y sostenibles.
               </p>
               <p>
-                Con presencia en distintas regiones del país, participamos activamente en
-                operaciones estratégicas de transferencia y porteo de carga, manipulación de
-                contenedores y servicios logísticos especializados.
+                Hemos desarrollado operaciones de carguío, transferencia y movimiento de materiales
+                a granel y contenedores, manteniendo indicadores sobresalientes de accidentabilidad
+                cero y cumplimiento del 100% en nuestras faenas.
+              </p>
+              <p>
+                En AP, trabajamos día a día para mover lo que el mundo necesita, con seguridad,
+                precisión y excelencia.
               </p>
             </div>
           </div>
@@ -240,24 +244,6 @@ const values = [
 
       <!-- Quote Section -->
       <div class="quote-section">
-        <div class="quote-icon">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path
-              d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
         <p class="quote-text">
           Cada proyecto que emprendemos refleja nuestra filosofía: movemos lo que el mundo necesita,
           con la fuerza, precisión y confianza que caracteriza a nuestro equipo.
@@ -631,7 +617,7 @@ const values = [
 /* QUOTE SECTION */
 .quote-section {
   background: var(--color-navy);
-  padding: 4rem 3rem;
+  padding: 2.5rem 3rem;
   border-radius: 20px;
   text-align: center;
   position: relative;
@@ -650,21 +636,6 @@ const values = [
   background: radial-gradient(circle, rgba(227, 30, 36, 0.15) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(30%, -30%);
-}
-
-.quote-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-.quote-icon svg {
-  width: 100%;
-  height: 100%;
-  color: var(--color-red);
-  opacity: 0.5;
 }
 
 .quote-text {
@@ -783,13 +754,8 @@ const values = [
   }
 
   .quote-section {
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
     margin-top: 3rem;
-  }
-
-  .quote-icon {
-    width: 70px;
-    height: 70px;
   }
 
   .quote-text {
@@ -886,14 +852,8 @@ const values = [
   }
 
   .quote-section {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.5rem;
     border-radius: 16px;
-  }
-
-  .quote-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1.5rem;
   }
 
   .quote-text {

@@ -38,8 +38,8 @@ const contact = [
             </div>
           </div>
           <p class="tagline">
-            En AP trabajamos cada día para mover lo que el mundo necesita, con seguridad, precisión
-            y excelencia.
+            "Trabajamos cada día para mover lo que el mundo necesita, con seguridad, precisión y
+            excelencia."
           </p>
         </div>
 
