@@ -3,27 +3,47 @@ import { ref } from 'vue'
 
 const stats = [
   { number: '2022', label: 'Año de Fundación' },
-  { number: '10+', label: 'Años de Experiencia del Equipo' },
+  { number: '3+', label: 'Años en el Mercado' },
   { number: '99%', label: 'Continuidad Operacional' },
   { number: '0', label: 'Accidentes con Tiempo Perdido' },
 ]
 
-const identity = [
+const values = [
   {
-    title: 'Razón Social',
-    value: 'Artillería Pesada Reparación Industrial SpA',
+    icon: 'shield',
+    title: 'Seguridad ante todo',
+    description:
+      'La seguridad es nuestro principio intransable. Cada decisión y acción en terreno se basa en proteger la vida, la salud y el bienestar de las personas.',
   },
   {
-    title: 'RUT',
-    value: '77.540.751-4',
+    icon: 'excellence',
+    title: 'Excelencia Operacional',
+    description:
+      'Ejecutamos con precisión, eficiencia y compromiso. Buscamos mejorar continuamente nuestros procesos para alcanzar los más altos estándares del sector.',
   },
   {
-    title: 'Representante Legal',
-    value: 'Angelo Cisternas Muñoz',
+    icon: 'responsibility',
+    title: 'Responsabilidad y Cumplimiento',
+    description:
+      'Cumplimos lo que prometemos. La transparencia, el orden y la responsabilidad guían nuestras relaciones con clientes, colaboradores y comunidades.',
   },
   {
-    title: 'Casa Matriz',
-    value: '1 Norte 461, Oficina 703, Viña del Mar',
+    icon: 'team',
+    title: 'Trabajo en Equipo',
+    description:
+      'Creemos que los mejores resultados se logran con colaboración, comunicación efectiva y liderazgo compartido en todos los niveles de la organización.',
+  },
+  {
+    icon: 'innovation',
+    title: 'Innovación y Mejora Continua',
+    description:
+      'Promovemos la adopción de nuevas tecnologías, métodos y herramientas que optimicen nuestros procesos y reduzcan los riesgos operativos y ambientales.',
+  },
+  {
+    icon: 'environment',
+    title: 'Compromiso con el Entorno',
+    description:
+      'Operamos de manera responsable con el medio ambiente y las comunidades donde trabajamos, respetando las normativas y promoviendo prácticas sostenibles.',
   },
 ]
 </script>
@@ -43,7 +63,7 @@ const identity = [
         <!-- Story Column -->
         <div class="story-column">
           <div class="story-card">
-            <h3>Historia Corporativa</h3>
+            <h3>Historia</h3>
             <div class="story-content">
               <p>
                 <strong>Artillería Pesada Reparación Industrial SpA</strong> nace en Chile con una
@@ -80,18 +100,168 @@ const identity = [
         </div>
       </div>
 
-      <!-- Identity Section -->
-      <div class="identity-section">
-        <div class="identity-header">
-          <h3>Identidad Empresarial</h3>
-          <p>Información legal y contacto corporativo</p>
-        </div>
-        <div class="identity-grid">
-          <div v-for="(item, index) in identity" :key="index" class="identity-card">
-            <div class="identity-title">{{ item.title }}</div>
-            <div class="identity-value">{{ item.value }}</div>
+      <!-- Values Section -->
+      <div class="values-section-header">
+        <div class="header-line-red"></div>
+        <h3 class="values-title">Nuestros Valores Corporativos</h3>
+        <div class="header-line-red"></div>
+      </div>
+
+      <div class="values-grid">
+        <div v-for="(value, index) in values" :key="index" class="value-card">
+          <!-- Icons -->
+          <div class="value-icon-wrapper">
+            <!-- Shield Icon -->
+            <svg v-if="value.icon === 'shield'" class="value-icon" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <!-- Excellence Icon -->
+            <svg
+              v-if="value.icon === 'excellence'"
+              class="value-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <!-- Responsibility Icon -->
+            <svg
+              v-if="value.icon === 'responsibility'"
+              class="value-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M12.02 21.5c1.92 -1.2 5.98 -3.01 5.98 -7.5a6 6 0 1 0 -12 0c0 4.5 4.06 6.3 5.98 7.5"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+
+            <!-- Team Icon -->
+            <svg v-if="value.icon === 'team'" class="value-icon" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <circle
+                cx="9"
+                cy="7"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <!-- Innovation Icon -->
+            <svg
+              v-if="value.icon === 'innovation'"
+              class="value-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M9 18h6M10 22h4M15 7.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 10.5v.5m-3.5-.5-.5 6.5h8l-.5-6.5"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <!-- Environment Icon -->
+            <svg
+              v-if="value.icon === 'environment'"
+              class="value-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
           </div>
+
+          <h4>{{ value.title }}</h4>
+          <p>{{ value.description }}</p>
         </div>
+      </div>
+
+      <!-- Quote Section -->
+      <div class="quote-section">
+        <div class="quote-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <p class="quote-text">
+          Cada proyecto que emprendemos refleja nuestra filosofía: movemos lo que el mundo necesita,
+          con la fuerza, precisión y confianza que caracteriza a nuestro equipo.
+        </p>
       </div>
     </div>
   </section>
@@ -349,6 +519,165 @@ const identity = [
   color: var(--color-white);
 }
 
+/* VALUES SECTION */
+.values-section-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 5rem 0 4rem;
+  justify-content: center;
+}
+
+.header-line-red {
+  flex: 1;
+  max-width: 200px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-red), transparent);
+}
+
+.values-title {
+  font-size: 2rem;
+  color: var(--color-navy);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-align: center;
+  margin: 0;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.value-card {
+  background: var(--color-white);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.value-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.value-card:hover::before {
+  transform: scaleX(1);
+}
+
+.value-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(227, 30, 36, 0.1) 0%, rgba(26, 40, 66, 0.05) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.value-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-red);
+  transition: all 0.3s ease;
+}
+
+.value-card:hover .value-icon-wrapper {
+  background: var(--color-red);
+  transform: scale(1.1);
+}
+
+.value-card:hover .value-icon {
+  color: var(--color-white);
+  transform: scale(1.15);
+}
+
+.value-card h4 {
+  color: var(--color-navy);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.value-card p {
+  color: var(--color-text);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* QUOTE SECTION */
+.quote-section {
+  background: var(--color-navy);
+  padding: 4rem 3rem;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  color: var(--color-white);
+  overflow: hidden;
+  margin-top: 4rem;
+}
+
+.quote-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(227, 30, 36, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(30%, -30%);
+}
+
+.quote-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-icon svg {
+  width: 100%;
+  height: 100%;
+  color: var(--color-red);
+  opacity: 0.5;
+}
+
+.quote-text {
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+}
+
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .about-grid {
@@ -357,6 +686,10 @@ const identity = [
   }
 
   .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .values-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -406,6 +739,61 @@ const identity = [
 
   .stat-label {
     font-size: 0.85rem;
+  }
+
+  .values-section-header {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 3rem 0 2.5rem;
+  }
+
+  .header-line-red {
+    display: none;
+  }
+
+  .values-title {
+    font-size: 1.6rem;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .value-card {
+    padding: 2rem 1.75rem;
+  }
+
+  .value-icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .value-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .value-card h4 {
+    font-size: 1.2rem;
+  }
+
+  .value-card p {
+    font-size: 0.9rem;
+  }
+
+  .quote-section {
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+  }
+
+  .quote-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .quote-text {
+    font-size: 1.2rem;
   }
 
   .identity-section {
@@ -469,6 +857,48 @@ const identity = [
 
   .stat-label {
     font-size: 0.8rem;
+  }
+
+  .values-title {
+    font-size: 1.4rem;
+  }
+
+  .value-card {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .value-icon-wrapper {
+    width: 65px;
+    height: 65px;
+  }
+
+  .value-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .value-card h4 {
+    font-size: 1.1rem;
+  }
+
+  .value-card p {
+    font-size: 0.9rem;
+  }
+
+  .quote-section {
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .quote-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-text {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .identity-section {

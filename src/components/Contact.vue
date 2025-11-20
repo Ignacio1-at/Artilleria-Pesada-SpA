@@ -98,32 +98,6 @@ import ContactForm from './ContactForm.vue'
           </div>
         </div>
       </div>
-
-      <!-- Información corporativa -->
-      <div class="company-info-box">
-        <div class="company-header">
-          <h3>Información Corporativa</h3>
-          <p>Datos legales y representantes</p>
-        </div>
-        <div class="company-grid">
-          <div class="company-item">
-            <strong>Razón Social</strong>
-            <span>Artillería Pesada Reparación Industrial SpA</span>
-          </div>
-          <div class="company-item">
-            <strong>RUT</strong>
-            <span>77.540.751-4</span>
-          </div>
-          <div class="company-item">
-            <strong>Representante Legal</strong>
-            <span>Angelo Cisternas Muñoz</span>
-          </div>
-          <div class="company-item">
-            <strong>Gerente de Operaciones</strong>
-            <span>Víctor Oyarzo Apablaza</span>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 </template>

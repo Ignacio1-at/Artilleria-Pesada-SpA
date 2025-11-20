@@ -5,9 +5,7 @@ const navigation = [
   { name: 'Inicio', href: '#inicio' },
   { name: 'Nosotros', href: '#nosotros' },
   { name: 'Servicios', href: '#servicios' },
-  { name: 'Seguridad', href: '#seguridad' },
-  { name: 'Infraestructura', href: '#infraestructura' },
-  { name: 'Valores', href: '#valores' },
+  { name: 'Nuestras Faenas', href: '#servicios-detallados' },
   { name: 'Contacto', href: '#contacto' },
 ]
 
@@ -39,7 +37,10 @@ const contact = [
               <span class="brand-subtitle">Reparación Industrial SpA</span>
             </div>
           </div>
-          <p class="tagline">La fuerza que mueve la industria chilena</p>
+          <p class="tagline">
+            En AP trabajamos cada día para mover lo que el mundo necesita, con seguridad, precisión
+            y excelencia.
+          </p>
         </div>
 
         <!-- Navigation Links -->

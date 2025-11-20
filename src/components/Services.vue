@@ -2,32 +2,32 @@
 const services = [
   {
     icon: 'logistics',
-    title: 'Operaciones Logísticas',
+    title: 'Operaciones Portuarias y Ferroviarias',
     items: [
-      'Carguío y manipulación de concentrado de cobre',
-      'Transferencia interna y porteo de materiales',
-      'Operación de grúas Reach Stacker y horquillas',
-      'Gestión logística de patios y zonas de transferencia',
+      'Transferencia, porteo y stacking de contenedores',
+      'Recepción y despacho de concentrado de cobre y ánodos',
+      'Carguío y descarga de trenes y camiones',
+      'Gestión de patios de transferencia 24/7',
     ],
   },
   {
     icon: 'maintenance',
-    title: 'Mantenimiento Industrial',
+    title: 'Mantenimiento y Traslados',
     items: [
-      'Mantenimiento preventivo y correctivo de maquinaria pesada',
-      'Montaje, desarme y traslado de equipos',
-      'Limpieza y control ambiental de áreas operativas',
-      'Gestión técnica y operativa de equipos industriales',
+      'Desarme, traslado y armado de maquinaria pesada',
+      'Mantenimiento preventivo y correctivo de equipos',
+      'Limpieza profunda de patios y áreas operativas',
+      'Servicios de emergencia 24/7',
     ],
   },
   {
     icon: 'transport',
-    title: 'Transporte y Logística',
+    title: 'Supervisión y Seguridad',
     items: [
-      'Transporte interno de carga y materiales',
-      'Flota propia para movimiento seguro',
-      'Supervisión y control operativo',
-      'Monitoreo de indicadores de desempeño',
+      'Supervisión operativa en faena',
+      'Control de seguridad y medio ambiente',
+      'Gestión integral SSOMA',
+      'Cumplimiento normativo y trazabilidad',
     ],
   },
 ]
@@ -38,12 +38,12 @@ const services = [
     <div class="container">
       <!-- Header -->
       <div class="section-header">
-        <div class="header-badge">NUESTROS SERVICIOS</div>
-        <h2 class="section-title">Servicios Principales</h2>
+        <div class="header-badge">¿QUÉ HACEMOS?</div>
+        <h2 class="section-title">Nuestros Servicios</h2>
         <div class="title-line"></div>
         <p class="section-subtitle">
-          Soluciones integrales para la operación, mantenimiento y soporte logístico de maquinaria
-          pesada
+          Operamos faenas portuarias y ferroviarias con enfoque en seguridad, eficiencia y
+          cumplimiento normativo
         </p>
       </div>
 
@@ -124,13 +124,13 @@ const services = [
       <!-- CTA Box -->
       <div class="cta-box">
         <div class="cta-content">
-          <h3>¿Necesitas una solución personalizada?</h3>
+          <h3>¿Quieres conocer nuestras faenas en detalle?</h3>
           <p>
-            Cada servicio es ejecutado bajo estrictos estándares de seguridad, calidad y
-            cumplimiento normativo
+            Cada operación está respaldada por procedimientos, certificaciones y un equipo
+            capacitado
           </p>
-          <a href="#contacto" class="cta-button">
-            <span>Contáctanos</span>
+          <a href="#servicios-detallados" class="cta-button">
+            <span>Ver Faenas</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 d="M4 10H16M16 10L10 4M16 10L10 16"

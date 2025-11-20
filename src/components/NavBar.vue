@@ -32,9 +32,7 @@ const menuItems = [
   { id: 'inicio', label: 'Inicio' },
   { id: 'nosotros', label: 'Nosotros' },
   { id: 'servicios', label: 'Servicios' },
-  { id: 'seguridad', label: 'Seguridad' },
-  { id: 'infraestructura', label: 'Infraestructura' },
-  { id: 'valores', label: 'Valores' },
+  { id: 'servicios-detallados', label: 'Nuestras Faenas' },
   { id: 'contacto', label: 'Contacto' },
 ]
 </script>

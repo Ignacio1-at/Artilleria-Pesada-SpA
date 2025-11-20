@@ -4,9 +4,7 @@ import NavBar from './components/NavBar.vue'
 import Hero from './components/Hero.vue'
 import About from './components/About.vue'
 import Services from './components/Services.vue'
-import Safety from './components/Safety.vue'
-import Infrastructure from './components/Infrastructure.vue'
-import Values from './components/Values.vue'
+import ServiceDetails from './components/ServiceDetails.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
 
@@ -20,9 +18,7 @@ const activeSection = ref('inicio')
       <Hero id="inicio" />
       <About id="nosotros" />
       <Services id="servicios" />
-      <Safety id="seguridad" />
-      <Infrastructure id="infraestructura" />
-      <Values id="valores" />
+      <ServiceDetails id="servicios-detallados" />
       <Contact id="contacto" />
     </main>
     <Footer />

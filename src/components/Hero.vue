@@ -59,15 +59,15 @@ const images = [
 
         <h1 class="hero-title">
           <span class="title-pre">Somos</span>
-          <span class="title-main">
-            <span class="title-line">ARTILLERÍA PESADA</span>
-            <span class="title-line">
-              REPARACIÓN INDUSTRIAL <span class="spa-badge">SpA</span>
-            </span>
-          </span>
+          <div class="title-logo">
+            <img src="/logo.png" alt="Artillería Pesada" class="main-logo" />
+          </div>
           <div class="title-lema">
             <span class="lema-line"></span>
-            <span class="lema-text">La fuerza que mueve la industria chilena</span>
+            <span class="lema-text"
+              >En AP trabajamos cada día para mover lo que el mundo necesita, con seguridad,
+              precisión y excelencia.</span
+            >
             <span class="lema-line"></span>
           </div>
         </h1>
@@ -97,10 +97,6 @@ const images = [
       </div>
 
       <div class="hero-sidebar">
-        <div class="logo-showcase">
-          <img src="/logo.png" alt="Artillería Pesada" class="showcase-logo" />
-        </div>
-
         <div class="photos-grid">
           <div v-for="(image, index) in images" :key="index" class="photo-item">
             <img :src="image.url" :alt="image.alt" />
@@ -132,7 +128,7 @@ const images = [
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: var(--navbar-height) 2rem 0;
+  padding: calc(var(--navbar-height) + 3rem) 3rem 3rem;
 }
 
 /* FONDO */
@@ -223,8 +219,8 @@ const images = [
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 5rem;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
   align-items: center;
 }
 
@@ -235,15 +231,15 @@ const images = [
 
 .badge {
   display: inline-block;
-  padding: 8px 20px;
+  padding: 6px 18px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 2px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   backdrop-filter: blur(10px);
 }
 
@@ -251,160 +247,54 @@ const images = [
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .title-pre {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
   letter-spacing: 3px;
   text-transform: uppercase;
+  margin-bottom: 0.75rem;
 }
 
-.title-main {
+.title-logo {
+  margin: 1rem 0 1.5rem 0;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -2px;
-  color: var(--color-white);
-  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+  justify-content: flex-start;
 }
 
-.title-line {
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.spa-badge {
-  color: var(--color-red);
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 700;
-  padding: 0.25rem 0.75rem;
-  border: 2px solid var(--color-red);
-  border-radius: 6px;
-}
-
-.title-lema {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.lema-line {
-  flex: 1;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--color-red), transparent);
-}
-
-.lema-text {
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.hero-description {
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 650px;
-  margin-bottom: 2.5rem;
-}
-
-/* BOTONES */
-.hero-actions {
-  display: flex;
-  gap: 1.25rem;
-}
-
-.cta-primary,
-.cta-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 16px 38px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.05rem;
-  border-radius: 6px;
+.main-logo {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 40px rgba(227, 30, 36, 0.6)) drop-shadow(0 0 20px rgba(227, 30, 36, 0.4));
   transition: all 0.3s ease;
 }
 
-.cta-primary {
-  background: var(--color-red);
-  color: var(--color-white);
-  border: 2px solid var(--color-red);
-}
-
-.cta-primary:hover {
-  transform: translateY(-2px);
-  background: var(--color-red-dark);
-  border-color: var(--color-red-dark);
-}
-
-.cta-primary svg {
-  transition: transform 0.3s ease;
-}
-
-.cta-primary:hover svg {
-  transform: translateX(4px);
-}
-
-.cta-secondary {
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: var(--color-white);
-}
-
-.cta-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-white);
-  transform: translateY(-2px);
+.main-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 40px rgba(227, 30, 36, 0.7));
 }
 
 /* SIDEBAR */
 .hero-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-.logo-showcase {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 3.5rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.showcase-logo {
-  max-width: 200px;
-  height: auto;
-  filter: drop-shadow(0 0 20px rgba(227, 30, 36, 0.3));
-  transition: transform 0.3s ease;
-}
-
-.logo-showcase:hover .showcase-logo {
-  transform: scale(1.05);
+  gap: 1.75rem;
 }
 
 .photos-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .photo-item {
@@ -449,6 +339,105 @@ const images = [
   opacity: 1;
 }
 
+/* LEMA */
+.title-lema {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.lema-line {
+  flex: 0.3;
+  height: 2px;
+  background: linear-gradient(to right, var(--color-red), transparent);
+}
+
+.lema-text {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: 0.3px;
+  text-transform: none;
+  white-space: normal;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* BOTONES */
+.hero-actions {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.cta-primary,
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 14px 32px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.cta-primary {
+  background: var(--color-red);
+  color: var(--color-white);
+  border: 2px solid var(--color-red);
+}
+
+.cta-primary:hover {
+  transform: translateY(-2px);
+  background: var(--color-red-dark);
+  border-color: var(--color-red-dark);
+}
+
+.cta-primary svg {
+  transition: transform 0.3s ease;
+}
+
+.cta-primary:hover svg {
+  transform: translateX(4px);
+}
+
+.cta-secondary {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-white);
+}
+
+.cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-photo-item:hover .photo-overlay {
+  opacity: 1;
+}
+
 /* SCROLL INDICATOR */
 .scroll-indicator {
   position: absolute;
@@ -479,20 +468,32 @@ const images = [
 
 /* RESPONSIVE */
 @media (max-width: 1200px) {
+  .hero {
+    padding: calc(var(--navbar-height) + 2rem) 2.5rem 2.5rem;
+  }
+
   .hero-container {
     gap: 3rem;
   }
 
-  .title-line {
-    font-size: clamp(2rem, 6vw, 3.5rem);
+  .title-pre {
+    font-size: 1.5rem;
   }
 
-  .spa-badge {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  .main-logo {
+    max-width: 300px;
+  }
+
+  .photos-grid {
+    padding: 1.5rem;
   }
 }
 
 @media (max-width: 1024px) {
+  .hero {
+    padding: calc(var(--navbar-height) + 2rem) 2rem 2rem;
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -505,28 +506,44 @@ const images = [
     align-items: center;
   }
 
+  .title-pre {
+    font-size: 1.4rem;
+  }
+
+  .title-logo {
+    justify-content: center;
+  }
+
+  .main-logo {
+    max-width: 280px;
+  }
+
+  .lema-line {
+    flex: 0.2;
+  }
+
   .hero-description {
     max-width: 100%;
   }
 
   .hero-sidebar {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 550px;
     width: 100%;
+    margin: 0 auto;
   }
 
-  .logo-showcase {
-    padding: 2.5rem 2rem;
+  .photos-grid {
+    padding: 1.5rem;
   }
 
-  .showcase-logo {
-    max-width: 180px;
+  .title-lema {
+    gap: 1.25rem;
   }
 }
 
 @media (max-width: 768px) {
   .hero {
-    padding: calc(var(--navbar-height) + 1rem) 1.5rem 2rem;
+    padding: calc(var(--navbar-height) + 1.5rem) 1.5rem 2rem;
     min-height: auto;
   }
 
@@ -537,28 +554,27 @@ const images = [
   .badge {
     font-size: 0.7rem;
     padding: 6px 16px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .title-pre {
-    font-size: 1.1rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
     letter-spacing: 2px;
   }
 
-  .title-line {
-    font-size: 2rem;
-    letter-spacing: -1px;
+  .title-logo {
+    margin: 1.25rem 0 1.5rem 0;
+    justify-content: center;
   }
 
-  .spa-badge {
-    font-size: 1.4rem;
-    padding: 0.2rem 0.6rem;
+  .main-logo {
+    max-width: 280px;
   }
 
   .title-lema {
     flex-direction: column;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 
   .lema-line {
@@ -566,21 +582,23 @@ const images = [
   }
 
   .lema-text {
-    font-size: 0.95rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     white-space: normal;
     text-align: center;
     letter-spacing: 0.5px;
+    line-height: 1.5;
   }
 
   .hero-description {
-    font-size: 1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
     line-height: 1.7;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 
   .hero-actions {
     flex-direction: column;
     width: 100%;
+    max-width: 400px;
     gap: 1rem;
   }
 
@@ -597,20 +615,13 @@ const images = [
   }
 
   .hero-sidebar {
-    max-width: 500px;
-  }
-
-  .logo-showcase {
-    padding: 2rem 1.5rem;
-  }
-
-  .showcase-logo {
-    max-width: 160px;
+    max-width: 100%;
   }
 
   .photos-grid {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 1rem;
+    padding: 1.25rem;
   }
 
   .photo-item {
@@ -624,7 +635,7 @@ const images = [
 
 @media (max-width: 480px) {
   .hero {
-    padding: calc(var(--navbar-height) + 0.5rem) 1rem 1.5rem;
+    padding: calc(var(--navbar-height) + 1rem) 1rem 1.5rem;
   }
 
   .hero-container {
@@ -635,48 +646,49 @@ const images = [
     font-size: 0.65rem;
     padding: 5px 14px;
     letter-spacing: 1.5px;
+    margin-bottom: 1rem;
   }
 
   .title-pre {
-    font-size: 1rem;
+    font-size: clamp(1rem, 4vw, 1.2rem);
   }
 
-  .title-line {
-    font-size: 1.6rem;
-    gap: 0.5rem;
+  .title-logo {
+    margin: 1rem 0;
   }
 
-  .spa-badge {
-    font-size: 1.1rem;
-    padding: 0.15rem 0.5rem;
+  .main-logo {
+    max-width: 240px;
+  }
+
+  .title-lema {
+    margin-top: 1rem;
   }
 
   .lema-text {
-    font-size: 0.85rem;
-    line-height: 1.4;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    line-height: 1.5;
   }
 
   .hero-description {
-    font-size: 0.95rem;
-    margin-bottom: 1.75rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    max-width: 100%;
   }
 
   .cta-primary,
   .cta-secondary {
-    padding: 12px 28px;
-    font-size: 0.95rem;
-  }
-
-  .logo-showcase {
-    padding: 1.75rem 1.25rem;
-  }
-
-  .showcase-logo {
-    max-width: 140px;
+    padding: 12px 24px;
+    font-size: clamp(0.9rem, 2.5vw, 0.95rem);
   }
 
   .photos-grid {
-    gap: 0.6rem;
+    gap: 0.75rem;
+    padding: 1rem;
   }
 
   .photo-item {

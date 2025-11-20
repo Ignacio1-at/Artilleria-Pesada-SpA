@@ -70,11 +70,18 @@ const handleSubmit = async () => {
   isSubmitting.value = true
 
   try {
-    const subject = encodeURIComponent(formData.value.asunto)
+    const subject = encodeURIComponent(`[Artillería Pesada] ${formData.value.asunto}`)
     const body = encodeURIComponent(
-      `Nombre: ${formData.value.nombre}\n` +
-        `Email: ${formData.value.email}\n\n` +
-        `Mensaje:\n${formData.value.mensaje}`,
+      `NUEVA CONSULTA - ARTILLERÍA PESADA\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+        `📋 INFORMACIÓN DE CONTACTO:\n` +
+        `Nombre: ${formData.value.nombre}\n` +
+        `Email: ${formData.value.email}\n` +
+        `Asunto: ${formData.value.asunto}\n\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `💬 MENSAJE:\n\n${formData.value.mensaje}\n\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `Este mensaje fue enviado desde artilleriapesada.cl`,
     )
 
     window.location.href = `mailto:victor.oyarzo@artilleriapesada.cl?subject=${subject}&body=${body}`

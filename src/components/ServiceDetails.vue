@@ -1,0 +1,980 @@
+<template>
+  <section id="servicios-detallados" class="service-details">
+    <div class="container">
+      <!-- Header -->
+      <div class="section-header">
+        <div class="header-badge">EXPERIENCIA OPERATIVA</div>
+        <h2 class="section-title">Nuestras Faenas</h2>
+        <div class="title-line"></div>
+        <p class="section-subtitle">
+          Operaciones activas que demuestran nuestra capacidad técnica y compromiso con la
+          excelencia
+        </p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs-container">
+        <button
+          v-for="(faena, index) in faenas"
+          :key="index"
+          :class="['tab-button', { active: activeFaena === index }]"
+          @click="selectFaena(index)"
+        >
+          {{ faena.title }}
+        </button>
+      </div>
+
+      <!-- Contenido -->
+      <div class="faena-content" v-if="faenas[activeFaena]">
+        <div class="faena-header">
+          <div class="status-badge" :class="faenas[activeFaena].status">
+            <div class="status-dot"></div>
+            <span>{{
+              faenas[activeFaena].status === 'active' ? 'En Ejecución' : 'Finalizada'
+            }}</span>
+          </div>
+          <h3 class="faena-title">{{ faenas[activeFaena].title }}</h3>
+          <div class="location">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" />
+            </svg>
+            {{ faenas[activeFaena].location }}
+          </div>
+        </div>
+
+        <div class="faena-info">
+          <div class="info-grid">
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" />
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" />
+              </svg>
+              <div>
+                <span class="label">Servicio</span>
+                <span class="value">{{ faenas[activeFaena].servicio }}</span>
+              </div>
+            </div>
+
+            <div class="info-item" v-if="faenas[activeFaena].cliente">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" />
+                <circle cx="9" cy="7" r="4" stroke="currentColor" />
+              </svg>
+              <div>
+                <span class="label">Cliente</span>
+                <span class="value">{{ faenas[activeFaena].cliente }}</span>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" />
+                <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" />
+                <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" />
+                <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" />
+              </svg>
+              <div>
+                <span class="label">Duración</span>
+                <span class="value">{{ faenas[activeFaena].duracion }}</span>
+              </div>
+            </div>
+
+            <div class="info-item" v-if="faenas[activeFaena].turno">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" />
+                <circle cx="12" cy="7" r="4" stroke="currentColor" />
+              </svg>
+              <div>
+                <span class="label">Turno</span>
+                <span class="value">{{ faenas[activeFaena].turno }}</span>
+              </div>
+            </div>
+
+            <div class="info-item" v-if="faenas[activeFaena].periodicidad">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" />
+                <polyline points="12 6 12 12 16 14" stroke="currentColor" />
+              </svg>
+              <div>
+                <span class="label">Periodicidad</span>
+                <span class="value">{{ faenas[activeFaena].periodicidad }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="description">
+            <h4>Descripción General</h4>
+            <p>{{ faenas[activeFaena].descripcion }}</p>
+          </div>
+
+          <div v-if="faenas[activeFaena].alcance?.length" class="alcance">
+            <h4>Alcance del Servicio</h4>
+            <ul>
+              <li v-for="(item, idx) in faenas[activeFaena].alcance" :key="idx">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" />
+                </svg>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="faenas[activeFaena].servicios?.length" class="servicios">
+            <h4>Servicios Realizados</h4>
+            <ul>
+              <li v-for="(item, idx) in faenas[activeFaena].servicios" :key="idx">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" />
+                </svg>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Galería -->
+        <div class="gallery">
+          <h4>Galería de Imágenes</h4>
+          <div class="gallery-grid">
+            <div
+              v-for="(foto, idx) in faenas[activeFaena].fotos"
+              :key="idx"
+              class="gallery-item"
+              @click="openModal(idx)"
+            >
+              <img :src="foto" :alt="`Foto ${idx + 1}`" loading="lazy" />
+              <div class="overlay">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <Transition name="modal">
+        <div v-if="modalOpen && faenas[activeFaena]" class="modal" @click="closeModal">
+          <button class="modal-close" @click="closeModal">
+            <svg viewBox="0 0 24 24" fill="none">
+              <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" />
+              <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+
+          <div class="modal-content" @click.stop>
+            <button class="modal-nav prev" @click="prevImage">
+              <svg viewBox="0 0 24 24" fill="none">
+                <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="3" />
+              </svg>
+            </button>
+
+            <img
+              :src="faenas[activeFaena].fotos[currentImageIndex]"
+              :alt="`Imagen ${currentImageIndex + 1}`"
+            />
+
+            <button class="modal-nav next" @click="nextImage">
+              <svg viewBox="0 0 24 24" fill="none">
+                <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="3" />
+              </svg>
+            </button>
+
+            <div class="modal-counter">
+              {{ currentImageIndex + 1 }} / {{ faenas[activeFaena].fotos.length }}
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+interface Faena {
+  title: string
+  location: string
+  servicio: string
+  duracion: string
+  turno?: string
+  status: 'active' | 'completed'
+  descripcion: string
+  alcance?: string[]
+  cliente?: string
+  periodicidad?: string
+  servicios?: string[]
+  fotos: string[]
+}
+
+const activeFaena = ref(0)
+const modalOpen = ref(false)
+const currentImageIndex = ref(0)
+
+const faenas: Faena[] = [
+  {
+    title: 'CUCONS VEN',
+    location: 'Ventanas, Puchuncaví',
+    servicio: 'Operación y Mantenimiento Tornamesa',
+    duracion: '12 meses (renovable)',
+    turno: '4x3',
+    status: 'active',
+    cliente: 'Anglo American',
+    descripcion:
+      'Operación integral y mantención especializada de tornamesas en Faena Los Bronces. Nuestro equipo técnico garantiza la disponibilidad operativa y el funcionamiento óptimo de sistemas críticos de transporte ferroviario.',
+    alcance: [
+      'Operación continua de tornamesas bajo sistemas de gestión SAI',
+      'Mantenimiento preventivo y correctivo programado',
+      'Inspecciones técnicas y reportes de estado',
+      'Gestión de repuestos y control de inventario',
+      'Cumplimiento estricto de estándares de seguridad Anglo American',
+    ],
+    fotos: [
+      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.23.18 (1).jpeg',
+      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.24.47 (1).jpeg',
+      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.24.51 (2).jpeg',
+      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.34.13 (1).jpeg',
+      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.34.17 (1).jpeg',
+      '/CUCONS VEN/WhatsApp Image 2025-07-31 at 10.05.45.jpeg',
+    ],
+  },
+  {
+    title: 'Tornamesa SAI',
+    location: 'Barrancas, San Antonio',
+    servicio: 'Transferencia y Porteo de Contenedores',
+    duracion: '6 meses',
+    turno: '4x3',
+    status: 'active',
+    cliente: 'FEPASA',
+    descripcion:
+      'Operación del patio de transferencia ferroviaria en Tornamesa, realizando carguío, descarga, porteo y apilamiento de contenedores que abastecen el puerto de San Antonio.',
+    alcance: [
+      'Operación continua 24/7 de patio ferroviario',
+      'Transferencia de contenedores desde trenes',
+      'Porteo interno y stacking optimizado',
+      'Coordinación con maniobras ferroviarias',
+      'Control de calidad y trazabilidad',
+    ],
+    fotos: [
+      '/TORNAMESA SAI/WhatsApp Image 2025-03-05 at 16.13.42.jpeg',
+      '/TORNAMESA SAI/WhatsApp Image 2025-06-05 at 17.31.53.jpeg',
+      '/TORNAMESA SAI/WhatsApp Image 2025-06-05 at 17.31.54 (1).jpeg',
+      '/TORNAMESA SAI/WhatsApp Image 2025-07-31 at 12.47.41 (5).jpeg',
+      '/TORNAMESA SAI/WhatsApp Image 2025-07-31 at 12.47.41 (15).jpeg',
+      '/TORNAMESA SAI/WhatsApp Image 2025-07-31 at 12.47.42 (10).jpeg',
+    ],
+  },
+  {
+    title: 'EFE Norte SAI',
+    location: 'San Antonio',
+    servicio: 'Mantenimiento Infraestructura SAI',
+    duracion: '8 meses',
+    turno: '5x2',
+    status: 'active',
+    cliente: 'Empresa de Ferrocarriles del Estado (EFE)',
+    descripcion:
+      'Recepción, descarga, almacenamiento y despacho de ánodos de cobre. Operación especializada que requiere precisión absoluta debido al peso y características de la carga.',
+    alcance: [
+      'Transferencia de ánodos desde trenes a almacenamiento',
+      'Despacho posterior a camiones',
+      'Coordinación entre operadores y auxiliares',
+      'Procedimientos especializados para carga pesada',
+      'Control de seguridad y trazabilidad',
+    ],
+    fotos: [
+      '/EFE NORTE SAI/WhatsApp Image 2025-03-19 at 16.43.55.jpeg',
+      '/EFE NORTE SAI/WhatsApp Image 2025-06-05 at 14.02.59 (1).jpeg',
+      '/EFE NORTE SAI/WhatsApp Image 2025-06-05 at 17.32.26.jpeg',
+      '/EFE NORTE SAI/WhatsApp Image 2025-06-05 at 17.32.33 (1).jpeg',
+      '/EFE NORTE SAI/WhatsApp Image 2025-07-31 at 10.11.04 (1).jpeg',
+      '/EFE NORTE SAI/WhatsApp Image 2025-07-31 at 10.11.05 (2).jpeg',
+    ],
+  },
+  {
+    title: 'Puerto Panul SAI',
+    location: 'Puerto Panul, Región de Coquimbo',
+    servicio: 'Implementación Sistema SAI',
+    duracion: '3 meses',
+    status: 'completed',
+    cliente: 'Puerto Panul',
+    descripcion:
+      'Proyecto de implementación de sistema SAI completo para operación portuaria, incluyendo instalación, configuración y puesta en marcha.',
+    alcance: [
+      'Diseño e instalación de sistema de automatización',
+      'Integración con infraestructura existente',
+      'Capacitación a personal operativo',
+      'Pruebas de funcionamiento y certificación',
+      'Entrega de documentación técnica',
+    ],
+    fotos: [
+      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.06.28.jpeg',
+      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.13.02.jpeg',
+      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.06.28.jpeg',
+      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.13.02.jpeg',
+      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.06.28.jpeg',
+      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.13.02.jpeg',
+    ],
+  },
+  {
+    title: 'Limpieza Patio Las Blancas',
+    location: 'Llay Llay',
+    servicio: 'Servicios de Limpieza Industrial',
+    duracion: 'Servicio continuo',
+    periodicidad: 'Diaria',
+    status: 'active',
+    cliente: 'Anglo American',
+    descripcion:
+      'Limpieza integral del patio donde se acopia y transfiere concentrado de cobre, incluyendo remoción de material adherido, despeje de áreas operativas y mantención de señalética.',
+    servicios: [
+      'Limpieza de vías férreas y áreas de operación',
+      'Retiro de material particulado y residuos industriales',
+      'Mantención de áreas de tránsito y seguridad',
+      'Gestión de residuos según normativa ambiental',
+      'Demarcaciones y mantenimiento de señalética',
+    ],
+    fotos: [
+      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.38.03.jpeg',
+      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.38.05 (1).jpeg',
+      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.38.08 (1).jpeg',
+      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.39.42.jpeg',
+      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.40.28.jpeg',
+      '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.40.35 (1).jpeg',
+    ],
+  },
+  {
+    title: 'Servicios Especiales de Traslados',
+    location: 'Región Metropolitana y Valparaíso',
+    servicio: 'Traslados y Logística Industrial',
+    duracion: 'Servicios bajo demanda',
+    status: 'active',
+    descripcion:
+      'Desarme, traslado y armado de maquinaria Reach Stacker entre distintas ciudades. Servicios complementarios de emergencia ante interrupciones operativas.',
+    servicios: [
+      'Transporte de equipos industriales y maquinaria pesada',
+      'Desarme y armado de Reach Stacker',
+      'Servicios de grúa horquilla y manipulación de cargas',
+      'Coordinación logística de operaciones especiales',
+      'Servicios de emergencia 24/7',
+    ],
+    fotos: [
+      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 12.40.09 (1).jpeg',
+      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 12.41.15 (1).jpeg',
+      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 13.33.45.jpeg',
+      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-07-01 at 17.34.37.jpeg',
+      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.07.45.jpeg',
+      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.16 (2).jpeg',
+    ],
+  },
+  {
+    title: 'Día del Trabajador 2025',
+    location: 'Evento Corporativo',
+    servicio: 'Celebración y Reconocimiento',
+    duracion: '--',
+    status: 'completed',
+    descripcion:
+      'Celebración del Día del Trabajador 2025, reconociendo el compromiso y dedicación de nuestro equipo. Un momento para fortalecer lazos, compartir experiencias y celebrar los logros alcanzados.',
+    servicios: [
+      'Organización de evento de reconocimiento',
+      'Actividades de integración del equipo',
+      'Reconocimiento a colaboradores destacados',
+      'Fortalecimiento de cultura organizacional',
+    ],
+    fotos: [
+      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.54 (1).jpeg',
+      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.56 (1).jpeg',
+      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.57 (2).jpeg',
+      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.59 (1).jpeg',
+      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-05-06 at 10.22.46 (1).jpeg',
+      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-05-06 at 10.22.47 (2).jpeg',
+    ],
+  },
+]
+
+const selectFaena = (index: number) => {
+  activeFaena.value = index
+  const content = document.querySelector('.faena-content')
+  if (content) {
+    content.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }
+}
+
+const openModal = (index: number) => {
+  currentImageIndex.value = index
+  modalOpen.value = true
+  document.body.style.overflow = 'hidden'
+}
+
+const closeModal = () => {
+  modalOpen.value = false
+  document.body.style.overflow = ''
+}
+
+const nextImage = () => {
+  if (faenas[activeFaena.value]) {
+    currentImageIndex.value = (currentImageIndex.value + 1) % faenas[activeFaena.value].fotos.length
+  }
+}
+
+const prevImage = () => {
+  if (faenas[activeFaena.value]) {
+    currentImageIndex.value =
+      (currentImageIndex.value - 1 + faenas[activeFaena.value].fotos.length) %
+      faenas[activeFaena.value].fotos.length
+  }
+}
+</script>
+
+<style scoped>
+.service-details {
+  padding: 100px 0;
+  background: linear-gradient(135deg, rgba(26, 40, 66, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.header-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  background: var(--color-red);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-navy);
+  margin-bottom: 15px;
+}
+
+.title-line {
+  width: 80px;
+  height: 4px;
+  background: var(--color-red);
+  margin: 0 auto 25px;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Tabs */
+.tabs-container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.tab-button {
+  padding: 14px 28px;
+  background: white;
+  border: 2px solid rgba(26, 40, 66, 0.1);
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  border-color: var(--color-red);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(227, 30, 36, 0.15);
+}
+
+.tab-button.active {
+  background: var(--color-red);
+  color: white;
+  border-color: var(--color-red);
+}
+
+/* Faena Content */
+.faena-content {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.faena-header {
+  background: linear-gradient(135deg, var(--color-navy) 0%, rgba(26, 40, 66, 0.9) 100%);
+  padding: 40px;
+  color: white;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4ade80;
+}
+
+.status-badge.completed .status-dot {
+  background: #94a3b8;
+}
+
+.faena-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.location svg {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+}
+
+/* Info Grid */
+.faena-info {
+  padding: 40px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.info-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(26, 40, 66, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(26, 40, 66, 0.08);
+  transition: all 0.3s ease;
+}
+
+.info-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-red);
+}
+
+.info-item svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-red);
+  stroke-width: 2;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.info-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-item .label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-navy);
+  opacity: 0.7;
+}
+
+.info-item .value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  line-height: 1.4;
+}
+
+/* Sections */
+.description,
+.alcance,
+.servicios {
+  margin-bottom: 40px;
+}
+
+.description h4,
+.alcance h4,
+.servicios h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--color-red);
+  display: inline-block;
+}
+
+.description p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.alcance ul,
+.servicios ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.alcance li,
+.servicios li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.alcance li svg,
+.servicios li svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-red);
+  stroke-width: 2.5;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Gallery */
+.gallery {
+  padding: 2%;
+  margin-top: 50px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(26, 40, 66, 0.1);
+}
+
+.gallery h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 30px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--color-red);
+  display: inline-block;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(227, 30, 36, 0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-item .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(227, 30, 36, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+.gallery-item .overlay svg {
+  width: 48px;
+  height: 48px;
+  stroke: white;
+  stroke-width: 2;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  transform: rotate(90deg);
+}
+
+.modal-close svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.modal-nav:hover {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.modal-nav svg {
+  width: 28px;
+  height: 28px;
+  stroke: white;
+}
+
+.modal-nav.prev {
+  left: 30px;
+}
+
+.modal-nav.next {
+  right: 30px;
+}
+
+.modal-counter {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Modal Animations */
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .faena-title {
+    font-size: 1.8rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-details {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .tabs-container {
+    gap: 8px;
+  }
+
+  .tab-button {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+  }
+
+  .faena-header {
+    padding: 30px 24px;
+  }
+
+  .faena-title {
+    font-size: 1.5rem;
+  }
+
+  .faena-info {
+    padding: 24px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-nav {
+    width: 48px;
+    height: 48px;
+  }
+
+  .modal-nav.prev {
+    left: 10px;
+  }
+
+  .modal-nav.next {
+    right: 10px;
+  }
+
+  .modal-close {
+    top: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .tab-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+</style>
