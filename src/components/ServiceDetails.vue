@@ -27,7 +27,7 @@
       <!-- Contenido -->
       <div class="faena-content" v-if="currentFaena">
         <div class="faena-header">
-          <div class="status-badge" :class="currentFaena.status">
+          <div class="status-badge" :class="currentFaena.status" v-if="currentFaena.status">
             <div class="status-dot"></div>
             <span>{{ currentFaena.status === 'active' ? 'En Ejecución' : 'Finalizada' }}</span>
           </div>
@@ -47,17 +47,6 @@
 
         <div class="faena-info">
           <div class="info-grid">
-            <div class="info-item">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" />
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" />
-              </svg>
-              <div>
-                <span class="label">Servicio</span>
-                <span class="value">{{ currentFaena.servicio }}</span>
-              </div>
-            </div>
-
             <div class="info-item" v-if="currentFaena.cliente">
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" />
@@ -69,7 +58,18 @@
               </div>
             </div>
 
-            <div class="info-item">
+            <div class="info-item" v-if="currentFaena.mandante">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" />
+                <circle cx="9" cy="7" r="4" stroke="currentColor" />
+              </svg>
+              <div>
+                <span class="label">Mandante</span>
+                <span class="value">{{ currentFaena.mandante }}</span>
+              </div>
+            </div>
+
+            <div class="info-item" v-if="currentFaena.duracion">
               <svg viewBox="0 0 24 24" fill="none">
                 <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" />
                 <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" />
@@ -254,13 +254,13 @@ interface Faena {
   title: string
   tabName?: string
   location: string
-  servicio: string
-  duracion: string
+  duracion?: string
   turno?: string
-  status: 'active' | 'completed'
+  status?: 'active' | 'completed'
   descripcion: string
   alcance?: string[]
   cliente?: string
+  mandante?: string
   periodicidad?: string
   servicios?: string[]
   indicadores?: string[]
@@ -280,12 +280,11 @@ const faenas: Faena[] = [
       'Servicio de Transferencia / porteo de contenedores y/o tolvas con concentrado de cobre en Ventanas',
     tabName: 'Cucons VEN',
     location: 'Ventanas, Puchuncaví',
-    servicio:
-      'Recepción, porteo interno, descarga y despacho de contenedores con concentrado de cobre',
     duracion: 'Enero 2023 – Diciembre 2026',
     turno: '6x1',
     status: 'active',
-    cliente: 'Ferrocarriles del Pacífico S.A. / Mandante: Codelco División Teniente',
+    cliente: 'Ferrocarriles del Pacífico S.A.',
+    mandante: 'Codelco División Teniente',
     descripcion:
       'En el patio de transferencia Cucons, operamos el proceso completo de movimiento de contenedores con concentrado de cobre, coordinando ingreso de camiones, corte de sellos, descarga en galpón, porteo y despacho final. La operación exige estándares estrictos por exposición a sílice y control ambiental.',
     indicadores: [
@@ -325,11 +324,9 @@ const faenas: Faena[] = [
     title: 'Faena Tornamesa – Barrancas, San Antonio',
     tabName: 'Tornamesa SAI',
     location: 'Barrancas, San Antonio',
-    servicio: 'Transferencia, porteo y stacking de contenedores',
     duracion: 'Enero 2024 – Diciembre 2028',
     turno: '6x1',
     status: 'active',
-    cliente: '—',
     descripcion:
       'En esta faena operamos el patio de transferencia ferroviaria ubicado en el sector Tornamesa de FEPASA, desempeñando el carguío, descarga, porteo interno y apilamiento de contenedores provenientes de trenes de carga que abastecen el puerto de San Antonio. La operación exige continuidad total y altos niveles de coordinación con las maniobras del ferrocarril. Movilizamos contenedores de carga general —desde celulosa hasta carga refrigerada o seca— garantizando trazabilidad, orden y continuidad operacional en todo momento.',
     indicadores: [
@@ -367,7 +364,6 @@ const faenas: Faena[] = [
     title: 'Faena EFE Norte – San Antonio',
     tabName: 'EFE Norte SAI',
     location: 'San Antonio',
-    servicio: 'Recepción, descarga, almacenamiento y despacho de ánodos de cobre',
     duracion: 'Activa',
     turno: '6x1',
     status: 'active',
@@ -406,7 +402,6 @@ const faenas: Faena[] = [
     title: 'Faena Puerto Panul – San Antonio',
     tabName: 'Puerto Panul SAI',
     location: 'Puerto Panul, San Antonio',
-    servicio: 'Movimiento y porteo interno de carros de granel (granos)',
     duracion: 'Octubre 2023 – Enero 2025',
     status: 'completed',
     descripcion:
@@ -433,7 +428,6 @@ const faenas: Faena[] = [
     title: 'Faena Las Blancas – Llay Llay',
     tabName: 'Limpieza Patio Las Blancas',
     location: 'Llay Llay',
-    servicio: 'Limpieza profunda y mantención del patio de transferencia de concentrado',
     duracion: 'Servicios Spot',
     periodicidad: 'Servicios programados según requerimiento del cliente "Servicios Spot"',
     status: 'active',
@@ -462,7 +456,6 @@ const faenas: Faena[] = [
   {
     title: 'Servicios Especiales de Traslados',
     location: 'Región Metropolitana y Valparaíso',
-    servicio: 'Traslados y Logística Industrial',
     duracion: 'Servicios bajo demanda',
     status: 'active',
     descripcion:
@@ -487,7 +480,6 @@ const faenas: Faena[] = [
     title: 'Servicios Especiales de AP',
     tabName: 'Servicios Especiales de AP',
     location: 'Transversal a todas las faenas',
-    servicio: 'Servicios especializados complementarios',
     duracion: '2024 – 2025',
     status: 'active',
     descripcion:
@@ -510,9 +502,6 @@ const faenas: Faena[] = [
   {
     title: 'Día del Trabajador 2025',
     location: 'Evento Corporativo',
-    servicio: 'Celebración y Reconocimiento',
-    duracion: '--',
-    status: 'completed',
     descripcion:
       'Celebración del Día del Trabajador 2025, reconociendo el compromiso y dedicación de nuestro equipo. Un momento para fortalecer lazos, compartir experiencias y celebrar los logros alcanzados.',
     servicios: [
