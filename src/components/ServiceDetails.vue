@@ -327,6 +327,8 @@ const faenas: Faena[] = [
     duracion: 'Enero 2024 – Diciembre 2028',
     turno: '6x1',
     status: 'active',
+    cliente: 'Ferrocarriles del Pacífico S.A.',
+    mandante: 'NN',
     descripcion:
       'En esta faena operamos el patio de transferencia ferroviaria ubicado en el sector Tornamesa de FEPASA, desempeñando el carguío, descarga, porteo interno y apilamiento de contenedores provenientes de trenes de carga que abastecen el puerto de San Antonio. La operación exige continuidad total y altos niveles de coordinación con las maniobras del ferrocarril. Movilizamos contenedores de carga general —desde celulosa hasta carga refrigerada o seca— garantizando trazabilidad, orden y continuidad operacional en todo momento.',
     indicadores: [
@@ -364,11 +366,13 @@ const faenas: Faena[] = [
     title: 'Faena EFE Norte – San Antonio',
     tabName: 'EFE Norte SAI',
     location: 'San Antonio',
-    duracion: 'Activa',
+    duracion: 'Enero 2024 – Diciembre 2028',
     turno: '6x1',
     status: 'active',
+    cliente: 'Ferrocarriles del Pacífico S.A.',
+    mandante: 'Anglo American',
     descripcion:
-      'Faena especializada en la transferencia de ánodos de cobre desde trenes y su despacho posterior a camiones. Esta operación requiere precisión absoluta debido al peso y características de la carga, así como coordinación continua entre operadores, auxiliares de patio y supervisor. Contamos con procedimientos desarrollados exclusivamente para esta faena, con énfasis en el tránsito, delimitación estricta del área de maniobra y control de riesgo de atrapamiento o aplastamiento.',
+      'Servicio de recepción, descarga, almacenamiento y despacho de ánodos de cobre. Faena especializada en la transferencia de ánodos de cobre desde trenes y su despacho posterior a camiones. Esta operación requiere precisión absoluta debido al peso y características de la carga, así como coordinación continua entre operadores, auxiliares de patio y supervisor. Contamos con procedimientos desarrollados exclusivamente para esta faena, con énfasis en el tránsito, delimitación estricta del área de maniobra y control de riesgo de atrapamiento o aplastamiento.',
     alcance: [
       'Descarga de paquetes de ánodos desde carros ferroviarios',
       'Nivelación y ajuste de paquetes mediante tocones',
@@ -403,7 +407,10 @@ const faenas: Faena[] = [
     tabName: 'Puerto Panul SAI',
     location: 'Puerto Panul, San Antonio',
     duracion: 'Octubre 2023 – Enero 2025',
+    turno: '6x1',
     status: 'completed',
+    cliente: 'Ferrocarriles del Pacífico S.A.',
+    mandante: 'NN',
     descripcion:
       'Esta faena implica el movimiento de carros ferroviarios con un minicargador para operaciones de transferencia de granel sólido en Puerto Panul. El trabajo es intermitente pero crítico, ya que debe ejecutarse con rapidez y seguridad para no interrumpir el proceso portuario.',
     alcance: [
@@ -428,9 +435,9 @@ const faenas: Faena[] = [
     title: 'Faena Las Blancas – Llay Llay',
     tabName: 'Limpieza Patio Las Blancas',
     location: 'Llay Llay',
-    duracion: 'Servicios Spot',
-    periodicidad: 'Servicios programados según requerimiento del cliente "Servicios Spot"',
-    status: 'active',
+    duracion: 'Servicio Spot',
+    periodicidad: 'Servicios programados según requerimiento del cliente "Servicio Spot"',
+    status: 'completed',
     descripcion:
       'Realizamos limpieza integral del patio donde se acopia y transfiere concentrado de cobre, incluyendo remoción de material adherido, despeje de áreas operativas, demarcaciones, mantenimiento de señalética y disposición final autorizada.',
     alcance: [
@@ -451,72 +458,6 @@ const faenas: Faena[] = [
       '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.39.42.jpeg',
       '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.40.28.jpeg',
       '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.40.35 (1).jpeg',
-    ],
-  },
-  {
-    title: 'Servicios Especiales de Traslados',
-    location: 'Región Metropolitana y Valparaíso',
-    duracion: 'Servicios bajo demanda',
-    status: 'active',
-    descripcion:
-      'Desarme, traslado y armado de maquinaria Reach Stacker entre distintas ciudades. Servicios complementarios de emergencia ante interrupciones operativas.',
-    servicios: [
-      'Transporte de equipos industriales y maquinaria pesada',
-      'Desarme y armado de Reach Stacker',
-      'Servicios de grúa horquilla y manipulación de cargas',
-      'Coordinación logística de operaciones especiales',
-      'Servicios de emergencia 24/7',
-    ],
-    fotos: [
-      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 12.40.09.jpeg',
-      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-07-01 at 17.57.19.jpeg',
-      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 12.40.09 (1).jpeg',
-      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 12.41.15 (1).jpeg',
-      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-04-24 at 13.33.45.jpeg',
-      '/SERVICIOS DE TRASLADOS/WhatsApp Image 2025-07-01 at 17.34.37.jpeg',
-    ],
-  },
-  {
-    title: 'Servicios Especiales de AP',
-    tabName: 'Servicios Especiales de AP',
-    location: 'Transversal a todas las faenas',
-    duracion: '2024 – 2025',
-    status: 'active',
-    descripcion:
-      'Servicios especiales que aplican transversalmente a todas las faenas y clientes, brindando soporte logístico y operativo según necesidades puntuales.',
-    servicios: [
-      'Desarme, traslado y armado de maquinaria Reach Stacker entre distintas ciudades (Rancagua – San Antonio, Santiago – Ventanas, entre otras)',
-      'Traslados de minicargadores, grúas horquillas y equipos portuarios',
-      'Asistencia operativa en faenas portuarias y ferroviarias',
-      'Servicios de emergencia 24/7 ante interrupciones operativas',
-    ],
-    fotos: [
-      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.17 (2).jpeg',
-      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.07.45.jpeg',
-      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.07.57.jpeg',
-      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.16 (1).jpeg',
-      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.16 (2).jpeg',
-      '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.16.jpeg',
-    ],
-  },
-  {
-    title: 'Día del Trabajador 2025',
-    location: 'Evento Corporativo',
-    descripcion:
-      'Celebración del Día del Trabajador 2025, reconociendo el compromiso y dedicación de nuestro equipo. Un momento para fortalecer lazos, compartir experiencias y celebrar los logros alcanzados.',
-    servicios: [
-      'Organización de evento de reconocimiento',
-      'Actividades de integración del equipo',
-      'Reconocimiento a colaboradores destacados',
-      'Fortalecimiento de cultura organizacional',
-    ],
-    fotos: [
-      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.54 (1).jpeg',
-      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.56 (1).jpeg',
-      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.57 (2).jpeg',
-      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.59 (1).jpeg',
-      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-05-06 at 10.22.46 (1).jpeg',
-      '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-05-06 at 10.22.47 (2).jpeg',
     ],
   },
 ]

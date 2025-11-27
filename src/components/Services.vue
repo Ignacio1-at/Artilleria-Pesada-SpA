@@ -3,6 +3,7 @@ const services = [
   {
     icon: 'logistics',
     title: 'Operaciones Portuarias y Ferroviarias',
+    image: '/TORNAMESA SAI/WhatsApp Image 2025-06-05 at 17.31.53.jpeg',
     items: [
       'Transferencia, porteo y stacking de contenedores',
       'Recepción y despacho de concentrado de cobre y ánodos',
@@ -12,22 +13,35 @@ const services = [
   },
   {
     icon: 'maintenance',
-    title: 'Mantenimiento y Traslados',
+    title: 'Mantenimiento y Limpieza',
+    image: '/LIMPIEZA PATIO LAS BLANCAS/WhatsApp Image 2025-07-08 at 12.40.05.jpeg',
     items: [
-      'Desarme, traslado y armado de maquinaria pesada',
       'Mantenimiento preventivo y correctivo de equipos',
       'Limpieza profunda de patios y áreas operativas',
-      'Servicios de emergencia 24/7',
+      'Retiro de concentrado y disposición final',
+      'Habilitación de zonas críticas',
     ],
   },
   {
     icon: 'transport',
     title: 'Supervisión y Seguridad',
+    image: '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.23.38.jpeg',
     items: [
       'Supervisión operativa en faena',
       'Control de seguridad y medio ambiente',
       'Gestión integral SSOMA',
       'Cumplimiento normativo y trazabilidad',
+    ],
+  },
+  {
+    icon: 'special',
+    title: 'Servicios Especiales',
+    image: '/DESARME Y ARMADO RS/WhatsApp Image 2025-07-31 at 10.14.17 (2).jpeg',
+    items: [
+      'Desarme, traslado y armado de Reach Stacker',
+      'Traslados de minicargadores y grúas horquillas',
+      'Asistencia operativa en faenas portuarias',
+      'Servicios de emergencia 24/7',
     ],
   },
 ]
@@ -98,6 +112,22 @@ const services = [
               />
               <path d="M9 3v18M15 3v18" stroke="currentColor" stroke-width="2" />
             </svg>
+
+            <!-- Special Services Icon -->
+            <svg
+              v-if="service.icon === 'special'"
+              class="service-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
           </div>
 
           <!-- Title -->
@@ -118,6 +148,11 @@ const services = [
               <span>{{ item }}</span>
             </li>
           </ul>
+
+          <!-- Service Image -->
+          <div class="service-image">
+            <img :src="service.image" :alt="service.title" loading="lazy" />
+          </div>
         </div>
       </div>
 
@@ -309,6 +344,26 @@ const services = [
   color: var(--color-red);
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+/* SERVICE IMAGE */
+.service-image {
+  margin-top: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover .service-image img {
+  transform: scale(1.05);
 }
 
 /* CTA BOX */

@@ -1,6 +1,36 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const teamPhotos = [
+  '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.54 (1).jpeg',
+  '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.56 (1).jpeg',
+  '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.57 (2).jpeg',
+  '/DIA DEL TRABAJADOR 2025/WhatsApp Image 2025-04-30 at 09.37.59 (1).jpeg',
+]
+
+// Modal state
+const modalOpen = ref(false)
+const currentImageIndex = ref(0)
+
+const openModal = (index: number) => {
+  currentImageIndex.value = index
+  modalOpen.value = true
+  document.body.style.overflow = 'hidden'
+}
+
+const closeModal = () => {
+  modalOpen.value = false
+  document.body.style.overflow = ''
+}
+
+const nextImage = () => {
+  currentImageIndex.value = (currentImageIndex.value + 1) % teamPhotos.length
+}
+
+const prevImage = () => {
+  currentImageIndex.value = (currentImageIndex.value - 1 + teamPhotos.length) % teamPhotos.length
+}
+
 const stats = [
   { number: '2022', label: 'Año de Fundación' },
   { number: '3+', label: 'Años en el Mercado' },
@@ -103,6 +133,69 @@ const values = [
           </div>
         </div>
       </div>
+
+      <!-- Team Section -->
+      <div class="team-section">
+        <div class="team-header">
+          <div class="header-line-red"></div>
+          <h3 class="team-title">Nuestro Equipo</h3>
+          <div class="header-line-red"></div>
+        </div>
+        <p class="team-description">
+          El corazón de Artillería Pesada son las personas. Valoramos el compromiso, la dedicación y
+          el espíritu de equipo de cada uno de nuestros colaboradores.
+        </p>
+        <div class="team-gallery">
+          <div
+            v-for="(foto, index) in teamPhotos"
+            :key="index"
+            class="team-photo"
+            @click="openModal(index)"
+          >
+            <img :src="foto" :alt="`Equipo AP ${index + 1}`" loading="lazy" />
+            <div class="photo-overlay">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Photo Modal -->
+      <Transition name="modal">
+        <div v-if="modalOpen" class="modal" @click="closeModal">
+          <button class="modal-close" @click="closeModal">
+            <svg viewBox="0 0 24 24" fill="none">
+              <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" />
+              <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+
+          <div class="modal-content" @click.stop>
+            <button class="modal-nav prev" @click="prevImage">
+              <svg viewBox="0 0 24 24" fill="none">
+                <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="3" />
+              </svg>
+            </button>
+
+            <img :src="teamPhotos[currentImageIndex]" :alt="`Imagen ${currentImageIndex + 1}`" />
+
+            <button class="modal-nav next" @click="nextImage">
+              <svg viewBox="0 0 24 24" fill="none">
+                <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="3" />
+              </svg>
+            </button>
+
+            <div class="modal-counter">{{ currentImageIndex + 1 }} / {{ teamPhotos.length }}</div>
+          </div>
+        </div>
+      </Transition>
 
       <!-- Values Section -->
       <div class="values-section-header">
@@ -514,6 +607,217 @@ const values = [
   justify-content: center;
 }
 
+/* TEAM SECTION */
+.team-section {
+  margin: 5rem 0;
+  padding: 3rem;
+  background: var(--color-white);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.team-title {
+  font-size: 2rem;
+  color: var(--color-navy);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-align: center;
+  margin: 0;
+}
+
+.team-description {
+  text-align: center;
+  color: var(--color-text);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.team-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.team-photo {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.team-photo:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(227, 30, 36, 0.2);
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.team-photo:hover img {
+  transform: scale(1.1);
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(227, 30, 36, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.team-photo:hover .photo-overlay {
+  opacity: 1;
+}
+
+.photo-overlay svg {
+  width: 48px;
+  height: 48px;
+  stroke: white;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  transform: rotate(90deg);
+}
+
+.modal-close svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.modal-nav:hover {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.modal-nav svg {
+  width: 28px;
+  height: 28px;
+  stroke: white;
+}
+
+.modal-nav.prev {
+  left: 30px;
+}
+
+.modal-nav.next {
+  right: 30px;
+}
+
+.modal-counter {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Modal Animations */
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
 .header-line-red {
   flex: 1;
   max-width: 200px;
@@ -663,6 +967,10 @@ const values = [
   .values-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .team-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -729,6 +1037,29 @@ const values = [
   .values-grid {
     grid-template-columns: 1fr;
     gap: 1.75rem;
+  }
+
+  .team-section {
+    padding: 2rem;
+    margin: 3rem 0;
+  }
+
+  .team-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .team-title {
+    font-size: 1.6rem;
+  }
+
+  .team-description {
+    font-size: 1rem;
+  }
+
+  .team-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .value-card {
@@ -827,6 +1158,53 @@ const values = [
 
   .values-title {
     font-size: 1.4rem;
+  }
+
+  .team-section {
+    padding: 1.5rem;
+  }
+
+  .team-title {
+    font-size: 1.4rem;
+  }
+
+  .team-description {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .team-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .team-photo {
+    border-radius: 12px;
+  }
+
+  .photo-overlay svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .modal-nav {
+    width: 48px;
+    height: 48px;
+  }
+
+  .modal-nav.prev {
+    left: 10px;
+  }
+
+  .modal-nav.next {
+    right: 10px;
+  }
+
+  .modal-close {
+    top: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
   }
 
   .value-card {
