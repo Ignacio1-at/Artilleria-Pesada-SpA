@@ -7,7 +7,6 @@ import ContactForm from './ContactForm.vue'
     <div class="container">
       <!-- Header -->
       <div class="section-header">
-        <div class="header-badge">CONTÁCTANOS</div>
         <h2 class="section-title">Contacto</h2>
         <div class="title-line"></div>
         <p class="section-subtitle">
@@ -47,8 +46,8 @@ import ContactForm from './ContactForm.vue'
               </svg>
             </div>
             <div class="contact-content">
-              <h4>Email</h4>
-              <p>victor.oyarzo@artilleriapesada.cl</p>
+              <h4>Cotizaciones</h4>
+              <p>cotizaciones@artilleriapesada.cl</p>
             </div>
           </a>
 
@@ -188,7 +187,7 @@ import ContactForm from './ContactForm.vue'
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
 }
@@ -363,7 +362,8 @@ import ContactForm from './ContactForm.vue'
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .contact-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 
   .company-grid {

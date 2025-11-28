@@ -795,7 +795,7 @@ const prevImage = () => {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
@@ -810,7 +810,7 @@ const prevImage = () => {
 }
 
 .gallery-item:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-8px);
   box-shadow: 0 12px 32px rgba(227, 30, 36, 0.2);
 }
 
@@ -818,7 +818,9 @@ const prevImage = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.4s ease;
+  display: block;
 }
 
 .gallery-item:hover img {
@@ -981,7 +983,7 @@ const prevImage = () => {
   }
 
   .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
 }
@@ -1022,7 +1024,8 @@ const prevImage = () => {
   }
 
   .gallery-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .modal-nav {

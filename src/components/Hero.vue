@@ -58,7 +58,6 @@ const images = [
         <div class="badge">EST. 2022</div>
 
         <h1 class="hero-title">
-          <span class="title-pre">Somos</span>
           <div class="title-logo">
             <img src="/logo.png" alt="Artillería Pesada" class="main-logo" />
           </div>
@@ -141,42 +140,21 @@ const images = [
 .bg-image {
   position: absolute;
   inset: 0;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(227,30,36,0.1)" stroke-width="1"/></pattern></defs><rect fill="%231a2842" width="1200" height="800"/><rect fill="url(%23grid)" width="1200" height="800"/></svg>');
-  background-size: cover;
-  background-position: center;
+  background: #ffffff;
 }
 
 .bg-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(26, 40, 66, 0.95) 0%,
-    rgba(44, 62, 95, 0.9) 50%,
-    rgba(227, 30, 36, 0.2) 100%
-  );
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(245, 247, 250, 1) 100%);
 }
 
 .bg-pattern {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(
-      45deg,
-      transparent 48%,
-      rgba(227, 30, 36, 0.05) 49%,
-      rgba(227, 30, 36, 0.05) 51%,
-      transparent 52%
-    ),
-    linear-gradient(
-      -45deg,
-      transparent 48%,
-      rgba(227, 30, 36, 0.05) 49%,
-      rgba(227, 30, 36, 0.05) 51%,
-      transparent 52%
-    );
-  background-size: 60px 60px;
-  opacity: 0.5;
+  background-image: radial-gradient(rgba(26, 40, 66, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 1;
 }
 
 /* PARTÍCULAS */
@@ -189,9 +167,9 @@ const images = [
 
 .particle {
   position: absolute;
-  background: var(--color-red);
+  background: var(--color-navy);
   border-radius: 50%;
-  opacity: 0.3;
+  opacity: 0.08;
   animation: float infinite ease-in-out;
 }
 
@@ -226,21 +204,20 @@ const images = [
 
 /* CONTENIDO */
 .hero-content {
-  color: var(--color-white);
+  color: var(--color-navy);
 }
 
 .badge {
   display: inline-block;
-  padding: 6px 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  color: rgba(255, 255, 255, 0.8);
+  padding: 6px 16px;
+  background: rgba(26, 40, 66, 0.06);
+  border: 1px solid rgba(26, 40, 66, 0.12);
+  border-radius: 20px;
+  color: var(--color-navy);
   font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   margin-bottom: 1.5rem;
-  backdrop-filter: blur(10px);
 }
 
 .hero-title {
@@ -262,20 +239,20 @@ const images = [
 .title-logo {
   margin: 1rem 0 1.5rem 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .main-logo {
   max-width: 320px;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 0 40px rgba(227, 30, 36, 0.6)) drop-shadow(0 0 20px rgba(227, 30, 36, 0.4));
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.08));
   transition: all 0.3s ease;
 }
 
 .main-logo:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 40px rgba(227, 30, 36, 0.7));
+  transform: scale(1.03);
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.12));
 }
 
 /* SIDEBAR */
@@ -288,13 +265,12 @@ const images = [
 .photos-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  gap: 0.875rem;
+  background: var(--color-white);
+  border: 1px solid rgba(26, 40, 66, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 24px rgba(26, 40, 66, 0.06);
 }
 
 .photo-item {
@@ -303,7 +279,8 @@ const images = [
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(26, 40, 66, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .photo-item:last-child {
@@ -350,30 +327,30 @@ const images = [
 .lema-line {
   flex: 0.3;
   height: 2px;
-  background: linear-gradient(to right, var(--color-red), transparent);
+  background: linear-gradient(90deg, var(--color-red) 0%, rgba(214, 0, 0, 0.2) 100%);
+  border-radius: 1px;
 }
 
 .lema-text {
-  font-size: clamp(0.95rem, 2vw, 1.05rem);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 1);
-  letter-spacing: 0.3px;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  font-weight: 500;
+  color: var(--color-text-light);
+  letter-spacing: 0.2px;
   text-transform: none;
   white-space: normal;
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-  max-width: 600px;
-  line-height: 1.55;
+  max-width: 550px;
+  line-height: 1.6;
   flex: 1;
   font-style: italic;
 }
 
 .hero-description {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 600px;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text-light);
+  max-width: 560px;
   margin-bottom: 2rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  font-weight: 400;
 }
 
 /* BOTONES */
@@ -387,24 +364,26 @@ const images = [
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 14px 32px;
+  padding: 12px 28px;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
 }
 
 .cta-primary {
   background: var(--color-red);
   color: var(--color-white);
-  border: 2px solid var(--color-red);
+  border: 1px solid var(--color-red);
+  box-shadow: 0 2px 8px rgba(214, 0, 0, 0.2);
 }
 
 .cta-primary:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   background: var(--color-red-dark);
   border-color: var(--color-red-dark);
+  box-shadow: 0 4px 12px rgba(214, 0, 0, 0.25);
 }
 
 .cta-primary svg {
@@ -417,14 +396,14 @@ const images = [
 
 .cta-secondary {
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: var(--color-white);
+  border: 1px solid rgba(26, 40, 66, 0.2);
+  color: var(--color-navy);
 }
 
 .cta-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-white);
-  transform: translateY(-2px);
+  background: rgba(26, 40, 66, 0.04);
+  border-color: rgba(26, 40, 66, 0.3);
+  transform: translateY(-1px);
 }
 
 .photo-overlay {
@@ -449,12 +428,13 @@ const images = [
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 3px;
+  color: var(--color-text-light);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 2px;
   z-index: 2;
-  animation: bounce 2s infinite;
+  animation: bounce 2.5s infinite;
+  opacity: 0.5;
 }
 
 @keyframes bounce {

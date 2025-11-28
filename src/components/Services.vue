@@ -239,20 +239,22 @@ const services = [
 /* SERVICES GRID */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
   margin-bottom: 4rem;
 }
 
 .service-card {
   background: var(--color-white);
-  padding: 3rem 2.5rem;
+  padding: 2.5rem 2rem;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card::before {
@@ -321,6 +323,7 @@ const services = [
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-grow: 1;
 }
 
 .service-list li {
@@ -351,15 +354,18 @@ const services = [
   margin-top: 1.5rem;
   border-radius: 12px;
   overflow: hidden;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/10;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .service-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.4s ease;
+  display: block;
 }
 
 .service-card:hover .service-image img {
@@ -444,7 +450,7 @@ const services = [
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .services-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
 }

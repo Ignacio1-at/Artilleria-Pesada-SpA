@@ -83,7 +83,6 @@ const values = [
     <div class="container">
       <!-- Header Section -->
       <div class="section-header">
-        <div class="header-badge">QUIÉNES SOMOS</div>
         <h2 class="section-title">Sobre Nosotros</h2>
         <div class="title-line"></div>
       </div>
@@ -349,7 +348,7 @@ const values = [
 <style scoped>
 .about {
   padding: 6rem 0;
-  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #ebf3fa 0%, #ffffff 100%);
   scroll-margin-top: var(--navbar-height);
 }
 
@@ -836,7 +835,7 @@ const values = [
 
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 3rem;
 }
@@ -965,7 +964,8 @@ const values = [
   }
 
   .values-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 
   .team-gallery {
@@ -1035,8 +1035,8 @@ const values = [
   }
 
   .values-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
 
   .team-section {
