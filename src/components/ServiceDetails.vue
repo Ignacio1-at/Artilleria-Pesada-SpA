@@ -312,12 +312,9 @@ const faenas: Faena[] = [
       'Cero desviaciones en estándares ambientales y operacionales',
     ],
     fotos: [
-      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.23.18 (1).jpeg',
-      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.24.47 (1).jpeg',
-      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.24.51 (2).jpeg',
-      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.34.13 (1).jpeg',
-      '/CUCONS VEN/WhatsApp Image 2025-06-12 at 11.34.17 (1).jpeg',
-      '/CUCONS VEN/WhatsApp Image 2025-07-31 at 10.05.45.jpeg',
+      '/CUCONS VEN/CUCONS-VEN1.jpg',
+      '/CUCONS VEN/CUCONS-VEN2.jpg',
+      '/CUCONS VEN/CUCONS-VEN3.jpg',
     ],
   },
   {
@@ -354,12 +351,9 @@ const faenas: Faena[] = [
       'Reacción inmediata ante emergencias, clima adverso o alta congestión operativa',
     ],
     fotos: [
-      '/TORNAMESA SAI/WhatsApp Image 2025-03-05 at 16.13.42.jpeg',
-      '/TORNAMESA SAI/WhatsApp Image 2025-06-05 at 17.31.53.jpeg',
-      '/TORNAMESA SAI/WhatsApp Image 2025-06-05 at 17.31.54 (1).jpeg',
-      '/TORNAMESA SAI/WhatsApp Image 2025-07-31 at 12.47.41 (5).jpeg',
-      '/TORNAMESA SAI/WhatsApp Image 2025-07-31 at 12.47.41 (15).jpeg',
-      '/TORNAMESA SAI/WhatsApp Image 2025-07-31 at 12.47.42 (10).jpeg',
+      '/TORNAMESA SAI/TORNAMESA-1.jpg',
+      '/TORNAMESA SAI/TORNAMESA-2.jpg',
+      '/TORNAMESA SAI/TORNAMESA-3.jpg',
     ],
   },
   {
@@ -393,14 +387,7 @@ const faenas: Faena[] = [
       'Control exhaustivo de accesos y tránsito en área de maniobra',
       'Procedimientos validados por inspecciones del cliente y ACHS',
     ],
-    fotos: [
-      '/EFE NORTE SAI/WhatsApp Image 2025-03-19 at 16.43.55.jpeg',
-      '/EFE NORTE SAI/WhatsApp Image 2025-06-05 at 14.02.59 (1).jpeg',
-      '/EFE NORTE SAI/WhatsApp Image 2025-06-05 at 17.32.26.jpeg',
-      '/EFE NORTE SAI/WhatsApp Image 2025-06-05 at 17.32.33 (1).jpeg',
-      '/EFE NORTE SAI/WhatsApp Image 2025-07-31 at 10.11.04 (1).jpeg',
-      '/EFE NORTE SAI/WhatsApp Image 2025-07-31 at 10.11.05 (2).jpeg',
-    ],
+    fotos: ['/EFE NORTE SAI/EFE-1.jpg', '/EFE NORTE SAI/EFE-2.jpg', '/EFE NORTE SAI/EFE-3.jpg'],
   },
   {
     title: 'Faena Puerto Panul – San Antonio',
