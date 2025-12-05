@@ -412,10 +412,6 @@ const faenas: Faena[] = [
     fotos: [
       '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.06.28.jpeg',
       '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.13.02.jpeg',
-      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.06.28.jpeg',
-      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.13.02.jpeg',
-      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.06.28.jpeg',
-      '/PUERTO PANUL SAI/WhatsApp Image 2025-07-31 at 10.13.02.jpeg',
     ],
   },
   {
