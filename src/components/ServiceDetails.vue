@@ -296,8 +296,8 @@ const faenas: Faena[] = [
       'Tiempo promedio de ciclo: 5 minutos por contenedor',
       '~6.500 HH anuales',
     ],
-    dotacion: ['1 Supervisor', '2 Operadores Reach Stacker', '2 Conductores'],
-    equipamiento: ['Reach Stacker Hyster RS45-31CH', '3 camiones propios (para porteo interno)'],
+    // dotacion: ['1 Supervisor', '2 Operadores Reach Stacker', '2 Conductores'],
+    // equipamiento: ['Reach Stacker Hyster RS45-31CH', '3 camiones propios (para porteo interno)'],
     alcance: [
       'Recepción de contenedores',
       'Trazabilidad y control de sellos',
@@ -335,8 +335,8 @@ const faenas: Faena[] = [
       '100% de cumplimiento operacional',
       'Cero quiebres de servicio desde el inicio de la faena',
     ],
-    dotacion: ['1 Supervisor', '2 Operadores Reach Stacker', '2 Auxiliares de Patio'],
-    equipamiento: ['Reach Stacker Hyster RS45-31CH (45 toneladas)'],
+    // dotacion: ['1 Supervisor', '2 Operadores Reach Stacker', '2 Auxiliares de Patio'],
+    // equipamiento: ['Reach Stacker Hyster RS45-31CH (45 toneladas)'],
     alcance: [
       'Descarga de contenedores desde tren',
       'Porteo interno hacia patio operacional',
@@ -375,8 +375,8 @@ const faenas: Faena[] = [
       'Control documental y trazabilidad',
       'Delimitación estricta de área crítica (uso obligatorio de conos y señalización)',
     ],
-    dotacion: ['1 Supervisor', '2 Operadores de Grúa Horquilla', '2 Auxiliares de Patio'],
-    equipamiento: ['Grúas horquillas de alto tonelaje (según procedimiento FR-PPA-12)'],
+    // dotacion: ['1 Supervisor', '2 Operadores de Grúa Horquilla', '2 Auxiliares de Patio'],
+    // equipamiento: ['Grúas horquillas de alto tonelaje (según procedimiento FR-PPA-12)'],
     indicadores: [
       '0 accidentabilidad',
       'Cumplimiento estricto de distancias de seguridad (8 metros hombre–máquina)',
